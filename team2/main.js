@@ -18,7 +18,7 @@ app.engine('ejs',ejsLocals);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-// student create,show 등 모든 router
+// student create, read, update, delete 등 모든 router
 app.use('/student', studentRouter);
 
 // main page
