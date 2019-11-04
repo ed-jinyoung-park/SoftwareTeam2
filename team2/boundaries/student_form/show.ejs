@@ -1,0 +1,41 @@
+<a href='/'/a>돌아가기</a>
+<!-- 학생이름 나열  -->
+<ol>
+  <% for(var i = 0; i< students.length; i++){%> 
+    <li>
+      <a href='/student_form/show/<%= students[i].id %>'>
+        <%= students[i].name %>
+      </a>
+    </li>
+  <% }; %>
+</ol>
+
+<article>
+  <% if(student){ %> 
+    <h2>학생정보</h2>
+    <p>이름 : <%= student.name %></p>  
+    <p>학번 : <%= student.adm_year %> </p>
+    <p>학기 : <%= student.semester%></p>
+    <p>1전공 : <%= student.major1%></p>
+    <p>2전공 : <%= student.major2%></p>
+    <p>3전공 : <%= student.major3%></p>
+    
+    <h2>이수과목</h2>
+    <p>전공필수: <%= student.major_required%></p>
+    <p>전공선택: <%= student.major_select%></p>
+    <p>교양필수: <%= student.general_required %></p>
+    <p>교양필수: <%= student.general_select %></p>
+    
+    <h2>시간표 생성 조건</h2>
+    <p>학점 범위 : <%= student.grade_range%></p>
+    <p>전공필수 개수 : <%= student.major_req_num%></p>
+    <p>전공선택 개수 : <%= student.major_sel_num%></p>
+    <p>교양필수 개수 : <%= student.general_req_num%></p>
+    <p>교양선택 개수 : <%= student.general_sel_num%></p>
+    <p>공강요일 : <%= student.blank_day%></p>
+    <p>이 과목은 꼭 듣겠다 : <%= student.must_take%></p>
+    <p>SU과목 : <%= student.su_included%></p>
+  <% } 
+  else { %>
+  <% } %>
+</article>
