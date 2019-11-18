@@ -1,4 +1,3 @@
-// DB와 객체를 연결해주는 기본 코드
 'use strict';
 
 const fs = require('fs');

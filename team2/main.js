@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var compression = require('compression');
 var studentRouter = require('./controllers/schedule_recommendation.js');
 var ejsLocals = require('ejs-locals');
+var {sequelize} = require('./models/index');
 
 app.set('view engine', 'ejs');
 app.set('views', './boundaries');
@@ -19,23 +20,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 // student create, read, update, delete 등 모든 router
-app.use('/student_form', studentRouter);
+app.use('/student', studentRouter);
 
 // main page
 app.get('/', function(req, res) { 
   res.render('index');
 });
 
-const models = require('./entities');
-models.sequelize.sync()
+// sequelize module로 DB 연결 
+sequelize.sync()
   .then(() => {
-    console.log('✓ DB connection success.');
-    console.log('  Press CTRL-C to stop\n');
+    console.log('Connection has been established successfully .');
   })
-  .catch(err => {
-    console.error(err);
-    console.log('✗ DB connection error. Please make sure DB is running.');
-    process.exit();
+  .catch(err =>{
+    console.log('Unable to Connect to the database:',err);
   });
 
 app.listen(port, () => console.log(`app listening on port ${port}!`))
