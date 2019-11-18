@@ -1,10 +1,11 @@
 <a href='/'/a>돌아가기</a>
 <!-- 학생이름 나열  -->
+
 <ol>
   <% for(var i = 0; i< students.length; i++){%> 
     <li>
-      <a href='/student_form/show/<%= students[i].id %>'>
-        <%= students[i].name %>
+      <a href='/student/show/<%= students[i].id %>'>
+        <%= students[i].student_name %>
       </a>
     </li>
   <% }; %>
@@ -13,12 +14,12 @@
 <article>
   <% if(student){ %> 
     <h2>학생정보</h2>
-    <p>이름 : <%= student.name %></p>  
-    <p>학번 : <%= student.adm_year %> </p>
+    <p>이름 : <%= student.student_name %></p>  
+    <p>학번 : <%= student.ent_year %> </p>
     <p>학기 : <%= student.semester%></p>
-    <p>1전공 : <%= student.major1%></p>
-    <p>2전공 : <%= student.major2%></p>
-    <p>3전공 : <%= student.major3%></p>
+    <p>1전공 : <%= student.major_1%></p>
+    <p>2전공 : <%= student.major_2%></p>
+    <p>3전공 : <%= student.major_3%></p>
     
     <h2>이수과목</h2>
     <p>전공필수: <%= student.major_required%></p>
