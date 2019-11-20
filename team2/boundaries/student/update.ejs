@@ -1,9 +1,9 @@
 <% layout('../layout/layout')%>
-<form action="/student/create" method="post">
+<form action="/student/update/<%=student.id%>" method="post">
   <h2>개인정보</h2>
-  <p><input type="text" name="st_name" placeholder="이름"></p>
-  <p><input type="text" name="adm_year" placeholder="학번(뒤의 연도 2자리만 입력해주세요)"></p>
-  <select name="semester">
+  <p><input type="text" name="name" value="<%=student.st_name%>"></p>
+  <p><input type="text" name="adm_year" value="<%=student.adm_year%>"></p>
+  <select name="semester" value="<%=student.semester%>">
     <option value="">학기</option>
     <option value="1학기">1학기</option>
     <option value="2학기">2학기</option>
@@ -17,14 +17,14 @@
     <option value="9학기초과">9학기초과</option>
   </select>
   <br>
-  <select name="major1" onchange="showLecture(this);">
+  <select name="major1" value="<%=student.major1%>">
     <option value="">제1전공</option>
     <option value="국어국문학">국어국문학</option>
     <option value="경영학">경영학</option>
     <option value="컴퓨터공학">컴퓨터공학</option>
     <option value="화학">화학</option>
   </select>
-  <select name="major2">
+  <select name="major2" value="<%=student.major2%>">
     <option value="">제2전공</option>
     <option value="없음">없음</option>
     <option value="융합소프트웨어">융합소프트웨어</option>
@@ -33,7 +33,7 @@
     <option value="컴퓨터공학">컴퓨터공학</option>
     <option value="화학">화학</option>
   </select>
-  <select name="major3">
+  <select name="major3" value="<%=student.major3%>">
     <option value="">제3전공</option>
     <option value="없음">없음</option>
     <option value="국어국문학">국어국문학</option>
