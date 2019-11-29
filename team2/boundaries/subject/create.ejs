@@ -1,0 +1,27 @@
+<% layout('../layout/layout')%>
+<form action="/student/subject/search" method="get">
+  <h2>수강과목입력</h2>
+  <div>
+    <input id="subjects" class="typeahead tt-query" type="text" />
+  </div>
+</form>
+
+<script>
+
+  $(document).ready(function(){
+    var subjects='<%=subjects%>';
+    // var subjects = document.getElementById('mydiv').dataset.test;
+    var subjects = subjects.split(',');
+    $("#subjects").autocomplete({
+      source: subjects,
+      select: function(event, ui){
+        console.log(ui.item);
+      },
+      focus: function(event, ui){
+        return false;
+      }
+    })
+
+  });
+
+</script>

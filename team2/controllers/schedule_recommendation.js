@@ -5,6 +5,7 @@ var fs = require('fs');
 var mysql = require('mysql');
 var models = require('../models/index');
 var subject_insert = require('../subject_insert.js');
+var Op=require('sequelize').Op;
 
 module.exports = router;
 
@@ -15,7 +16,7 @@ router.get('/create', function(req,res){
 
 // data save - 입력한 데이터를 post방식으로 저장.
 router.post('/create',function(req,res){
-  //request로 data를 받아 user에 저장
+  //request로 data를 받아 user에  저장
   user = req.body;
   // student 객체에 데이터 저장
   models.student.create({
@@ -25,10 +26,41 @@ router.post('/create',function(req,res){
     major1: user.major1,
     major2: user.major2,
     major3: user.major3
-   }).then(()=>{console.log("Create Done")});
+   }).then((result)=>{
+     var id = result.dataValues.id;
+     res.redirect('/student/'+id+'/subject/create');
+   });
   
-  // index (home)로 이동 
-  res.render('index');
+});
+
+// subject create
+router.get('/:id/subject/create',function(req,res){
+  models.subject.findAll({
+    attributes: ['title'],
+    raw: true
+  }).then(function(subjects){
+    var subjects = subjects.map(subject => subject.title);
+    res.render('./subject/create',{subjects: subjects});
+  });
+});
+
+router.get('/subject/search', function(req,res){
+  console.log(req.query.typeahead);
+  var searchWord=req.query.typeahead;
+
+  models.subject.findAll({
+    where:{
+      title:{
+        [Op.like]: "%"+searchWord+"%"
+      }
+    }
+  })
+  .then(result=>{
+    console.log(result);
+  })
+  .catch(error=>{
+    console.log(error);
+  })
 });
 
 // data를 보여주는 read 화면
