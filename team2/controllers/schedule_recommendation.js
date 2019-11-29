@@ -4,6 +4,7 @@ var path = require('path');
 var fs = require('fs');
 var mysql = require('mysql');
 var models = require('../models/index');
+var subject_insert = require('../subject_insert.js');
 
 module.exports = router;
 
@@ -96,3 +97,10 @@ router.get('/delete/:id', function(req,res){
     console.log("data delete error")
   })
 });
+
+// subject_all data insert
+models.subject.count().then(c=>{
+  if(c==0) subject_insert();
+});
+
+
