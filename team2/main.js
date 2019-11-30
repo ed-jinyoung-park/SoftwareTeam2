@@ -48,8 +48,5 @@ sequelize.sync()
     console.log('Unable to Connect to the database:',err);
   });
 
-models.subject.count().then(c=>{
-  if(c==0) subject_insert();
-});
 
 app.listen(port, () => console.log(`app listening on port ${port}!`))

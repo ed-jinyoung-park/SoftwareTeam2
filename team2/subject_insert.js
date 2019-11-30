@@ -14,7 +14,7 @@ module.exports = function(){
       code: row['subject_code'],
       title: row['title']
     }
-    Subject.findOrCreate(resultObj)
+    Subject.create(resultObj)
       .then(function() {
         console.log('Record created')
       })

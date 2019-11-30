@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false, 
       autoIncrement: true
     },
-    st_name: {type: DataTypes.STRING, allowNull: false},
     adm_year: {type: DataTypes.STRING, allowNull: false},
     semester: {type: DataTypes.STRING, allowNull: false},
     major1: {type: DataTypes.STRING, allowNull: false},

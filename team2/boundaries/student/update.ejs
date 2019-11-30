@@ -1,7 +1,6 @@
 <% layout('../layout/layout')%>
 <form action="/student/update/<%=student.id%>" method="post">
   <h2>개인정보</h2>
-  <p><input type="text" name="name" value="<%=student.st_name%>"></p>
   <p><input type="text" name="adm_year" value="<%=student.adm_year%>"></p>
   <select name="semester" value="<%=student.semester%>">
     <option value="">학기</option>

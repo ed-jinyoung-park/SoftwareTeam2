@@ -20,7 +20,6 @@ router.post('/create',function(req,res){
   user = req.body;
   // student 객체에 데이터 저장
   models.student.create({
-    st_name: user.st_name,
     adm_year: user.adm_year,
     semester: user.semester,
     major1: user.major1,
@@ -28,6 +27,11 @@ router.post('/create',function(req,res){
     major3: user.major3
    }).then((result)=>{
      var id = result.dataValues.id;
+     
+    models.subject.count().then(c=>{
+      if(c==0) subject_insert();
+    });
+
      res.redirect('/student/'+id+'/subject/create');
    });
   
@@ -37,9 +41,6 @@ router.post('/create',function(req,res){
 router.get('/:id/subject/create',function(req,res){
 
   // subject_all data insert
-  models.subject.count().then(c=>{
-    if(c==0) subject_insert();
-  });
 
   models.subject.findAll({
     attributes: ['title'],
