@@ -82,7 +82,7 @@ router.get('/:id/subject/create/:array', function(req,res){
 });
 
 // 입력 3단계 - style create
-router.get('/:id/style/create', function(req,res){
+router.get('/:id/condition/create', function(req,res){
   res.render('./style/create');
 });
 
