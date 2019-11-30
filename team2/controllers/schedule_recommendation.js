@@ -4,17 +4,19 @@ var path = require('path');
 var fs = require('fs');
 var mysql = require('mysql');
 var models = require('../models/index');
+var subject_insert = require('../subject_insert.js');
+var Op = require('sequelize').Op;
 
 module.exports = router;
 
-// data create - 입력 화면으로 이동
+// 입력 1단계 - student create
 router.get('/create', function(req,res){
   res.render('./student/create');
 });
 
-// data save - 입력한 데이터를 post방식으로 저장.
+// 입력 1단계 - student save
 router.post('/create',function(req,res){
-  //request로 data를 받아 user에 저장
+  //request로 data를 받아 user에  저장
   user = req.body;
   // student 객체에 데이터 저장
   models.student.create({
@@ -24,10 +26,63 @@ router.post('/create',function(req,res){
     major1: user.major1,
     major2: user.major2,
     major3: user.major3
-   }).then(()=>{console.log("Create Done")});
+   }).then((result)=>{
+     var id = result.dataValues.id;
+     res.redirect('/student/'+id+'/subject/create');
+   });
   
-  // index (home)로 이동 
-  res.render('index');
+});
+
+// 입력 2단계 - subject create
+router.get('/:id/subject/create',function(req,res){
+
+  // subject_all data insert
+  models.subject.count().then(c=>{
+    if(c==0) subject_insert();
+  });
+
+  models.subject.findAll({
+    attributes: ['title'],
+    raw: true
+  }).then(function(subjects){
+    var subjects = subjects.map(subject => subject.title);
+    res.render('./subject/create',{subjects: subjects});
+  });
+});
+
+// 입력 2단계 - mysubject save
+router.get('/:id/subject/create/:array', function(req,res){
+  var id = req.params.id;
+  var subject_array=req.params.array;
+  subject_array = subject_array.split(',');
+  subject_array.pop();
+  
+  models.subject.findAll({
+    where: {title: subject_array},
+    attributes: ['id']
+  }).then(subjects=>{
+    var subject_id_array = subjects.map(subject => subject.id);
+    console.log(subject_id_array);
+    
+    for(var i=0; i<subject_id_array.length; i++){
+      models.Mysubject.create({
+        studentId: id,
+        subjectId: subject_id_array[i]
+      }).then(result=>{
+        console.log(result);
+      })
+      .catch(error=>{
+        console.log(error+'Mysubject create error');
+      })
+    }
+  })
+
+  res.redirect('/student/'+id+'/style/create/');
+});
+
+// 입력 3단계 - style create
+router.get('/:id/style/create', function(req,res){
+  res.render('./style/create');
 });
 
 // data를 보여주는 read 화면
@@ -96,3 +151,6 @@ router.get('/delete/:id', function(req,res){
     console.log("data delete error")
   })
 });
+
+
+
