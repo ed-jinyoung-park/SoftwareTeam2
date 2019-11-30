@@ -11,6 +11,8 @@ var compression = require('compression');
 var studentRouter = require('./controllers/schedule_recommendation.js');
 var ejsLocals = require('ejs-locals');
 var {sequelize} = require('./models/index');
+var models = require('./models/index');
+var subject_insert = require('./subject_insert.js');
 
 app.set('view engine', 'ejs');
 app.set('views', './boundaries');
@@ -20,7 +22,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 // student create, read, update, delete 등 모든 router
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use('/student', express.static(path.join(__dirname, 'public')));
 app.use('/student', studentRouter);
+
+console.log(path.join(__dirname));
 
 // main page
 app.get('/', function(req, res) { 
@@ -35,5 +42,9 @@ sequelize.sync()
   .catch(err =>{
     console.log('Unable to Connect to the database:',err);
   });
+
+models.subject.count().then(c=>{
+  if(c==0) subject_insert();
+});
 
 app.listen(port, () => console.log(`app listening on port ${port}!`))

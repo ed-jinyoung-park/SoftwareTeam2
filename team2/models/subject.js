@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
     title:{type: DataTypes.STRING, allowNull: false}
   }, {});
   subject.associate = function(models) {
-    // associations can be defined here
   };
   return subject;
 };
