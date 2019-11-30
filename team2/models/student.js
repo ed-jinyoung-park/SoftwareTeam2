@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
     major3: {type: DataTypes.STRING, allowNull: true}
   }, {});
   student.associate = function(models) {
-    // associations can be defined here
   };
   return student;
 };
