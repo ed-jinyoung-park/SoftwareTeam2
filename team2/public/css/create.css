@@ -1,0 +1,91 @@
+body {
+    margin: auto;
+}
+
+header {
+    height: 57px;
+    display: flex;
+}
+
+header p {
+    font-size: 14px;    
+    margin: auto;
+    color: #ef5757;
+    font-weight: bold;
+}
+
+footer {
+    height: 46px;
+    display: flex;
+    background-color: #ef5757;
+}
+
+footer p {
+    font-size: 14px;    
+    margin: auto;
+    color: white;
+    font-weight: bold;
+}
+
+.container {
+    margin: auto;
+}
+
+
+h2 {
+    margin: 46px;
+    font-size: 20px;
+    color: #ef5757;
+    text-align: center;
+}
+
+h3 {
+    font-size: 15px;
+    text-align: left;
+    text-indent: 40px;
+    color: #ef5757;
+    margin-top: 0px;
+    margin-bottom: 7px;
+}
+
+select {
+    text-indent: 20px;
+    width: 295px;
+    height: 48px;
+    margin-bottom: 16px;
+    border: 2px solid #ff9494;
+    border-radius: 24px;
+    color: #ef5757;
+    background-color: white;
+
+    background: url('../icon/arrow.svg') no-repeat 100% 50%;
+    -moz-appearance: none;
+    -webkit-appearance: none; 
+
+}
+
+input[type="text"] {
+    width: 295px;
+    height: 48px;
+    border-radius: 24px;
+    border: 2px solid #ff9494;
+    text-indent: 20px;
+    margin-bottom: 16px;
+    color: #ef5757;
+    box-sizing:border-box;
+    display: flex;
+}
+
+
+input[type="submit"] {
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    width: 295px;
+    height: 48px;
+    border-radius: 24px;
+    border: none;
+    background-color: #ef5757;
+    margin-top: 20px;
+    margin-bottom: 35px;
+}
