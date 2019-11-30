@@ -19,13 +19,18 @@ app.engine('ejs',ejsLocals);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use('/student', express.static(path.join(__dirname, 'public')));
+
 // student create, read, update, delete 등 모든 router
 app.use('/student', studentRouter);
 
 // main page
-app.get('/', function(req, res) { 
+app.get('/', function(req, res) {
   res.render('index');
 });
+
 
 // sequelize module로 DB 연결 
 sequelize.sync()
