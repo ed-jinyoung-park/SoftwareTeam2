@@ -78,13 +78,15 @@ router.get('/:id/subject/create/:array', function(req,res){
     }
   })
 
-  res.redirect('/student/'+id+'/style/create/');
+  res.redirect('/student/'+id+'/condition/create/');
 });
 
 // 입력 3단계 - style create
 router.get('/:id/condition/create', function(req,res){
-  res.render('./style/create');
+  res.render('./condition/create');
 });
+
+router.get('/:id/recomm/')
 
 // data를 보여주는 read 화면
 router.get(['/show', '/show/:id'], function(req,res){
