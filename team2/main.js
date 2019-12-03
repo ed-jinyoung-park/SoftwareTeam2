@@ -9,6 +9,7 @@ var qs = require('querystring');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var studentRouter = require('./controllers/schedule_recommendation.js');
+var infoManageRouter = require('./controllers/user_info_management.js');
 var ejsLocals = require('ejs-locals');
 var {sequelize} = require('./models/index');
 var models = require('./models/index');
@@ -26,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use('/student', express.static(path.join(__dirname, 'public')));
 app.use('/student', studentRouter);
-
+app.use(infoManageRouter);
 
 console.log(path.join(__dirname));
 

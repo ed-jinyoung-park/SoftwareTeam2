@@ -83,14 +83,12 @@ router.get('/:id/subject/create/:array', function(req,res){
 });
 
 // 입력 3단계 - condition create
-
 router.get('/:id/condition/create', function(req,res){
   var id = req.params.id;
   res.render('./condition/create',{id: id});
 });
 
 //입력 3단계 - condition save
-
 router.post('/:id/condition/create', function(req,res){
   user_condition = req.body;
   console.log(user_condition);
@@ -107,10 +105,11 @@ router.post('/:id/condition/create', function(req,res){
     sub_fix_3:user_condition.sub_fix_3,
     su_sub:user_condition.sub_fix_3
   })
-  res.redirect('/recomm/first');
+  res.redirect('/student/'+id+'/recomm/first');
 });
 
-router.get('/recomm/first', function(req, res){
+//추천 1단계
+router.get('/:id/recomm/first', function(req, res){
   res.render('./recomm/first'); 
 });
 
