@@ -23,9 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     vacant_day: {type: DataTypes.STRING, allowNull: true,
       get() {
               return this.getDataValue('vacant_day').split(',')
-          },
-      set(val) {
-             this.setDataValue('vacant_day',val.join(','));
           }
     },
     sub_fix_1: {type: DataTypes.STRING, allowNull: true},
