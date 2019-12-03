@@ -27,14 +27,14 @@ router.post('/create',function(req,res){
     major3: user.major3
    }).then((result)=>{
      var id = result.dataValues.id;
-     
+
     models.subject.count().then(c=>{
       if(c==0) subject_insert();
     });
 
      res.redirect('/student/'+id+'/subject/create');
    });
-  
+
 });
 
 // 입력 2단계 - subject create
@@ -57,14 +57,14 @@ router.get('/:id/subject/create/:array', function(req,res){
   var subject_array=req.params.array;
   subject_array = subject_array.split(',');
   subject_array.pop();
-  
+
   models.subject.findAll({
     where: {title: subject_array},
     attributes: ['id']
   }).then(subjects=>{
     var subject_id_array = subjects.map(subject => subject.id);
     console.log(subject_id_array);
-    
+
     for(var i=0; i<subject_id_array.length; i++){
       models.Mysubject.create({
         studentId: id,
@@ -78,12 +78,34 @@ router.get('/:id/subject/create/:array', function(req,res){
     }
   })
 
-  res.redirect('/student/'+id+'/style/create/');
+  res.redirect('/student/'+id+'/condition/create');
 });
 
-// 입력 3단계 - style create
+// 입력 3단계 - condition create
+
 router.get('/:id/condition/create', function(req,res){
-  res.render('./style/create');
+  var id = req.params.id;
+  res.render('./condition/create',{id: id});
+});
+//입력 3단계 - condition save
+
+router.post('/:id/condition/create', function(req,res){
+  user_condition = req.body;
+  console.log(user_condition);
+  var id = req.params.id;
+  models.condition.create({
+    //id:user_condition.id;
+    studentId: id,
+    grade_num: user_condition.totalCredit,
+    major_num: user_condition.majorCredit,
+    general_num: user_condition.generalCredit,
+    vacant_day: user_condition.vacant_day,
+    sub_fix_1:user_condition.sub_fix_1,
+    sub_fix_2:user_condition.sub_fix_2,
+    sub_fix_3:user_condition.sub_fix_3,
+    su_sub:user_condition.sub_fix_3
+  })
+  res.redirect('/student/show');
 });
 
 // data를 보여주는 read 화면
@@ -95,7 +117,7 @@ router.get(['/show', '/show/:id'], function(req,res){
     if(id){ // id 값이 있을 경우
       // findOne함수로 해당 id값을 가진 student를 찾음
       models.student.findOne({where: {id: id}}).then(student =>{
-        // students에 findAll의 결과, student에 findOne의 결과를 담아 student/show.ejs에 전달 
+        // students에 findAll의 결과, student에 findOne의 결과를 담아 student/show.ejs에 전달
         res.render('student/show', {students: students, student: student})
       })
     }
@@ -122,7 +144,7 @@ router.get('/update/:id', function(req, res){
 router.post('/update/:id', function(req,res){
   // id값을 id, 수정 정보를 user에 담음
   var id = req.params.id;
-  var user = req.body; 
+  var user = req.body;
   // update code
   models.student.update({
     st_name: user.st_name,
@@ -152,6 +174,3 @@ router.get('/delete/:id', function(req,res){
     console.log("data delete error")
   })
 });
-
-
-
