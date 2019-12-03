@@ -77,7 +77,6 @@ router.get('/:id/subject/create/:array', function(req,res){
       })
     }
   })
-
   res.redirect('/student/'+id+'/condition/create');
 });
 
@@ -87,6 +86,7 @@ router.get('/:id/condition/create', function(req,res){
   var id = req.params.id;
   res.render('./condition/create',{id: id});
 });
+
 //입력 3단계 - condition save
 
 router.post('/:id/condition/create', function(req,res){
@@ -107,6 +107,8 @@ router.post('/:id/condition/create', function(req,res){
   })
   res.redirect('/student/show');
 });
+
+router.get('/:id/recomm/')
 
 // data를 보여주는 read 화면
 router.get(['/show', '/show/:id'], function(req,res){
