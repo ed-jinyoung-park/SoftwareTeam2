@@ -1,17 +1,12 @@
-<form action="/condition/create" method="post">
+<form action="/student/<%=id%>/condition/create" method="post">
   <h2>조건 입력</h2>
   <div class="container" style="display: flex;flex-direction:column;">
   	<div class="stylebox">
 	  <select name="totalCredit">
-	    <option value="">이번 학기 총 이수 학점</option>
-	    <option value="1">3 학점 이하</option>
-	    <option value="2">4 ~ 6 학점</option>
-	    <option value="3">7 ~ 9 학점</option>
-	    <option value="4">10 ~ 12 학점</option>
-	    <option value="5">13 ~ 15 학점</option>
-	    <option value="6">16 ~ 18 학점</option>
-	    <option value="7">19 ~ 21학점</option>
-	    <option value="8">22 학점 이상</option>
+	    <option value="">이수할 학점</option>
+	    <option value="5">14 ~ 16 학점</option>
+	    <option value="6">17 ~ 19 학점</option>
+	    <option value="8">20 학점 이상</option>
 	  </select>
 	  <br>
 	</div>
@@ -24,21 +19,28 @@
 			<p>공강 요일</p>
 		</div>
 		<div style="display: flex;"">
-			<p><input type="checkbox" name="noclassDay" value="mon">월</p>
-	  		<p><input type="checkbox" name="noclassDay" value="tue">화</p>
-	  		<p><input type="checkbox" name="noclassDay" value="wed">수</p>
-	  		<p><input type="checkbox" name="noclassDay" value="wed">목</p>
-	  		<p><input type="checkbox" name="noclassDay" value="wed">금</p>
+			<p><input type="checkbox" name="vacant_day" value="mon">월</p>
+	  		<p><input type="checkbox" name="vacant_day" value="tue">화</p>
+	  		<p><input type="checkbox" name="vacant_day" value="wed">수</p>
+	  		<p><input type="checkbox" name="vacant_day" value="thu">목</p>
+	  		<p><input type="checkbox" name="vacant_day" value="fri">금</p>
 		</div>
 	</div>
 	<div class="stylebox" style="display: flex;flex-direction:column;">
 		<div>
 			<p>과목 고정</p>
+      <p><input type="text" name="sub_fix_1" placeholder="고정 과목 1"></p>
+      <p><input type="text" name="sub_fix_2" placeholder="고정 과목 2"></p>
+      <p><input type="text" name="sub_fix_3" placeholder="고정 과목 3"></p>
 		</div>
-		<div style="display: flex;">
-			
-	  		<p>검색창</p>
-		</div>
+	</div>
+  <div class="stylebox" style="display: flex;flex-direction:column;">
+		<div>
+			<p>S/U 과목 포함</p>
+      <p><input type="checkbox" name="su" value="majorSU">전공 S/U</p>
+      <p><input type="checkbox" name="su" value="generalSU">교양 S/U</p>
+      <p><input type="checkbox" name="su" value="noSU">불포함</p>
+    </div>
 	</div>
 
 
