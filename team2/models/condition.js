@@ -2,9 +2,9 @@
 module.exports = (sequelize, DataTypes) => {
   const condition = sequelize.define('condition', {
     id: {
-      type: DataTypes.INTEGER, 
-      primaryKey: true, 
-      allowNull: false, 
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
       autoIncrement: true
     },
     studentId: {
@@ -15,13 +15,23 @@ module.exports = (sequelize, DataTypes) => {
       },
       allowNull: false
     },
+
+    //DataTypes.ARRAY(DataTypes.DECIMAL)
     grade_num: {type: DataTypes.STRING, allowNull: false},
     major_num: {type: DataTypes.INTEGER, allowNull: false},
     general_num: {type: DataTypes.INTEGER, allowNull: false},
-    vacant_day: {type: DataTypes.STRING, allowNull: true},
-    sub_fix: {type: DataTypes.STRING, allowNull: true},
-    su_sub: {type: DataTypes.STRING, allowNull: true},
-    vacant_time: {type: DataTypes.STRING, allowNull: true}
+    vacant_day: {type: DataTypes.STRING, allowNull: true,
+      get() {
+              return this.getDataValue('vacant_day').split(',')
+          },
+      set(val) {
+             this.setDataValue('vacant_day',val.join(','));
+          }
+    },
+    sub_fix_1: {type: DataTypes.STRING, allowNull: true},
+    sub_fix_2: {type: DataTypes.STRING, allowNull: true},
+    sub_fix_3: {type: DataTypes.STRING, allowNull: true},
+    su_sub: {type: DataTypes.STRING, allowNull: true}
   }, {});
   condition.associate = function(models) {
   };
