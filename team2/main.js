@@ -21,15 +21,16 @@ app.engine('ejs',ejsLocals);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/static', express.static(path.join(__dirname, 'public')));
-app.use('/student', express.static(path.join(__dirname, 'public')));
-
 // student create, read, update, delete 등 모든 router
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use('/student', express.static(path.join(__dirname, 'public')));
 app.use('/student', studentRouter);
+
+
+app.use('/subject', express.static(path.join(__dirname, 'public')));
+
+app.use('/style', express.static(path.join(__dirname, 'public')));
 
 console.log(path.join(__dirname));
 

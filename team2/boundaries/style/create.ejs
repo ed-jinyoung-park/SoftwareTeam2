@@ -1,1 +1,45 @@
-style create
+<% layout('../layout/layout')%>
+
+<form action="/style/create" method="post">
+    <h2>조건 입력</h2>
+    <div class="container" style="display: flex;flex-direction:column;">
+        <div class="stylebox">
+        <select name="totalCredit">
+          <option value="1">14 ~ 16 학점</option>
+          <option value="2">17 ~ 19학점</option>
+          <option value="3">20 ~ 22학점</option>
+        </select>
+        <br>
+      </div>
+      <div class="stylebox">
+          <p style="float:left"><input type="text" name="majorCredit" placeholder="전공 학점"></p>
+            <p style="float:left"><input type="text" name="generalCredit" placeholder="교양 학점"></p>
+      </div>
+      <div class="stylebox" style="display: flex;flex-direction:column;">
+          <div>
+              <p>공강 요일</p>
+          </div>
+          <div style="display: flex;">
+              <p><input type="checkbox" name="noclassDay" value="mon">월</p>
+                <p><input type="checkbox" name="noclassDay" value="tue">화</p>
+                <p><input type="checkbox" name="noclassDay" value="wed">수</p>
+                <p><input type="checkbox" name="noclassDay" value="wed">목</p>
+                <p><input type="checkbox" name="noclassDay" value="wed">금</p>
+          </div>
+      </div>
+      <div class="stylebox" style="display: flex;flex-direction:column;">
+          <div>
+              <p>과목 고정</p>
+          </div>
+          <div style="display: flex;">
+              
+                <p>검색창</p>
+          </div>
+      </div>
+  
+  
+        <p>
+          <input type="submit">
+        </p>
+    </div>
+  </form>

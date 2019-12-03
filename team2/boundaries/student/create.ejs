@@ -5,7 +5,7 @@
 
   <!-- <p><input type="text" name="st_name" placeholder="이름"></p> -->
 
-  <div class = "container" align = "center">
+  <div class = "container1" align = "center">
    <h3>학번</h3>
 
   <input type="text" name="adm_year" placeholder="뒤의 연도 2자리만 입력해주세요">
@@ -26,29 +26,23 @@
   <br>
   <h3>제1전공</h3>
   <select name="major1">
-    <option value="국어국문학">국어국문학</option>
-    <option value="경영학">경영학</option>
-    <option value="컴퓨터공학">컴퓨터공학</option>
-    <option value="화학">화학</option>
+    <% for(var i = 0; i< major_list.length; i++) {%>
+    <option value="<%= major_list[i] %>"><%= major_list[i] %></option>
+    <% }; %>
   </select>
   <br>
   <h3>제2전공</h3>
   <select name="major2">
-    <option value="없음">없음</option>
-    <option value="융합소프트웨어">융합소프트웨어</option>
-    <option value="국어국문학">국어국문학</option>
-    <option value="경영학">경영학</option>
-    <option value="컴퓨터공학">컴퓨터공학</option>
-    <option value="화학">화학</option>
+      <% for(var i = 0; i< minor_list.length; i++) {%>
+        <option value="<%= minor_list[i] %>"><%= minor_list[i] %></option>
+      <% }; %>
   </select>
   <br>
   <h3>제3전공</h3>
   <select name="major3">
-    <option value="없음">없음</option>
-    <option value="국어국문학">국어국문학</option>
-    <option value="경영학">경영학</option>
-    <option value="컴퓨터공학">컴퓨터공학</option>
-    <option value="화학">화학</option>
+      <% for(var i = 0; i< minor_list.length; i++) {%>
+        <option value="<%= minor_list[i] %>"><%= minor_list[i] %></option>
+      <% }; %>
   </select>
 
   <p>
