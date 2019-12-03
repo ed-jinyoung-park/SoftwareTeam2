@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     major3: {type: DataTypes.STRING, allowNull: true}
   }, {});
   student.associate = function(models) {
-
   };
   return student;
 };

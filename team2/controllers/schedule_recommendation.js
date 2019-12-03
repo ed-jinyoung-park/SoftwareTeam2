@@ -11,7 +11,9 @@ module.exports = router;
 
 // 입력 1단계 - student create
 router.get('/create', function(req,res){
-  res.render('./student/create');
+  var major_list = ["국어국문학","사학","철학","종교학","영미어문","미국문화","유럽문화","중국문화","사회학","정치외교학","심리학","경제학","경영학","신문방송학","미디어&엔터테인먼트","아트&테크놀로지","글로벌한국학","수학","물리학","화학","생명과학","전자공학","컴퓨터공학","화공생명공학","기계공학"];
+  var minor_list = ["없음","국어국문학","사학","철학","종교학","영미어문","미국문화","유럽문화","중국문화","사회학","정치외교학","심리학","경제학","경영학","신문방송학","미디어&엔터테인먼트","아트&테크놀로지","글로벌한국학","수학","물리학","화학","생명과학","전자공학","컴퓨터공학","화공생명공학","기계공학","융합소프트웨어","스포츠미디어","바이오융합","여성학","스타트업","정치경제철학","공공인재","일본문화","빅데이터-데이터엔지니어","빅데이터-데이터분석","인공지능"];
+  res.render('./student/create',{major_list: major_list, minor_list: minor_list});
 });
 
 // 입력 1단계 - student save
@@ -27,14 +29,14 @@ router.post('/create',function(req,res){
     major3: user.major3
    }).then((result)=>{
      var id = result.dataValues.id;
-
+     
     models.subject.count().then(c=>{
       if(c==0) subject_insert();
     });
 
      res.redirect('/student/'+id+'/subject/create');
    });
-
+  
 });
 
 // 입력 2단계 - subject create
@@ -57,14 +59,14 @@ router.get('/:id/subject/create/:array', function(req,res){
   var subject_array=req.params.array;
   subject_array = subject_array.split(',');
   subject_array.pop();
-
+  
   models.subject.findAll({
     where: {title: subject_array},
     attributes: ['id']
   }).then(subjects=>{
     var subject_id_array = subjects.map(subject => subject.id);
     console.log(subject_id_array);
-
+    
     for(var i=0; i<subject_id_array.length; i++){
       models.Mysubject.create({
         studentId: id,
@@ -108,8 +110,6 @@ router.post('/:id/condition/create', function(req,res){
   res.redirect('/student/show');
 });
 
-router.get('/:id/recomm/')
-
 // data를 보여주는 read 화면
 router.get(['/show', '/show/:id'], function(req,res){
   // request로 id 값 받아 id에 저장
@@ -119,7 +119,7 @@ router.get(['/show', '/show/:id'], function(req,res){
     if(id){ // id 값이 있을 경우
       // findOne함수로 해당 id값을 가진 student를 찾음
       models.student.findOne({where: {id: id}}).then(student =>{
-        // students에 findAll의 결과, student에 findOne의 결과를 담아 student/show.ejs에 전달
+        // students에 findAll의 결과, student에 findOne의 결과를 담아 student/show.ejs에 전달 
         res.render('student/show', {students: students, student: student})
       })
     }
@@ -146,7 +146,7 @@ router.get('/update/:id', function(req, res){
 router.post('/update/:id', function(req,res){
   // id값을 id, 수정 정보를 user에 담음
   var id = req.params.id;
-  var user = req.body;
+  var user = req.body; 
   // update code
   models.student.update({
     st_name: user.st_name,
@@ -176,3 +176,6 @@ router.get('/delete/:id', function(req,res){
     console.log("data delete error")
   })
 });
+
+
+
