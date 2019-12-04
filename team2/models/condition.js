@@ -15,8 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       allowNull: false
     },
-
-    //DataTypes.ARRAY(DataTypes.DECIMAL)
     grade_num: {type: DataTypes.STRING, allowNull: false},
     major_num: {type: DataTypes.INTEGER, allowNull: false},
     general_num: {type: DataTypes.INTEGER, allowNull: false},
