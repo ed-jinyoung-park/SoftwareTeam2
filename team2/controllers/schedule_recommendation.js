@@ -94,7 +94,7 @@ router.post('/:id/condition/create', function(req,res){
   console.log(user_condition);
   var id = req.params.id;
   var vacant_day = user_condition.vacant_day;
-  if(typeof vacant_day == object){
+  if(typeof vacant_day == 'object'){
     vacant_day = vacant_day.join();
   }
   models.condition.create({
