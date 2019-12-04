@@ -28,6 +28,7 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use('/student', express.static(path.join(__dirname, 'public')));
 app.use('/student', studentRouter);
 app.use(infoManageRouter);
+app.use(loginRouter);
 
 console.log(path.join(__dirname));
 

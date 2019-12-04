@@ -93,13 +93,17 @@ router.post('/:id/condition/create', function(req,res){
   user_condition = req.body;
   console.log(user_condition);
   var id = req.params.id;
+  var vacant_day = user_condition.vacant_day;
+  if(typeof vacant_day == object){
+    vacant_day = vacant_day.join();
+  }
   models.condition.create({
     //id:user_condition.id;
     studentId: id,
     grade_num: user_condition.totalCredit,
     major_num: user_condition.majorCredit,
     general_num: user_condition.generalCredit,
-    vacant_day: user_condition.vacant_day.join(),
+    vacant_day: vacant_day,
     sub_fix_1:user_condition.sub_fix_1,
     sub_fix_2:user_condition.sub_fix_2,
     sub_fix_3:user_condition.sub_fix_3,
