@@ -15,20 +15,18 @@ header p {
 }
 
 footer {
+    position: fixed;
+    width: 375px;
     height: 46px;
     display: flex;
     background-color: #ef5757;
 }
 
 footer p {
-    font-size: 14px;    
+    font-size: 14px;
     margin: auto;
     color: white;
     font-weight: bold;
-}
-
-.container {
-    margin: auto;
 }
 
 .container1 {
@@ -40,6 +38,12 @@ footer p {
     margin: auto;
     height: 593px;
 }
+
+.container3 {
+    margin: auto;
+    height: 593px;
+}
+
 #selected-subjects {
     height: 324px;
 }
@@ -59,6 +63,77 @@ footer p {
     -moz-appearance: none;
     -webkit-appearance: none; 
 }
+
+.stylebox1 {
+    margin: auto;
+    display: flex;
+}
+
+.input1 {
+    display: flex;
+    margin-right: 16px;
+}
+
+.input2 {
+    display: flex;
+    margin-left: 16px;
+}
+
+.input1 input[type="text"] {
+    text-align: center;
+    text-indent: 0px;
+    width: 111px;
+    margin-right: 5px;
+}
+
+.input2 input[type="text"] {
+    text-align: center;
+    text-indent: 0px;
+    width: 111px;
+    margin-right: 5px;
+}
+
+.checkbox {
+    margin: 10px auto 20px auto;
+}
+
+.checkboxSU {
+    margin: 10px auto auto auto;
+}
+
+.checkbox p {
+    display: inline-block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+    color: #ff9494;
+}
+
+.checkboxSU p {
+    display: inline-block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+    color: #ff9494;
+}
+
+.checkbox1 {
+    display: flex;
+    margin-right: 14px;
+    vertical-align: middle;
+}
+
+.checkbox2 {
+    display: flex;
+    margin-left: 14px;
+    margin-right: 14px;
+}
+
+.checkbox3 {
+    display: flex;
+    margin-left: 14px;
+}
+
 
 .button {
     font-size: 15px;
@@ -109,6 +184,10 @@ h3 {
     margin-bottom: 7px;
 }
 
+p {
+    color: #ef5757;
+}
+
 select {
     text-indent: 20px;
     width: 295px;
@@ -149,4 +228,24 @@ input[type="submit"] {
     background-color: #ef5757;
     margin-top: 20px;
     margin-bottom: 35px;
+}
+
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + label {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid #ff9494;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ef5757;
+    margin-top: 3px;
+}
+
+input[type="checkbox"]:checked + label {
+	background-color: #ff9494;
 }

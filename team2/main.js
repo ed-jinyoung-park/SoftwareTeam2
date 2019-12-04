@@ -10,7 +10,6 @@ var bodyParser = require('body-parser');
 var compression = require('compression');
 var studentRouter = require('./controllers/schedule_recommendation.js');
 var infoManageRouter = require('./controllers/user_info_management.js');
-var loginRouter = require('./controllers/session.js');
 var ejsLocals = require('ejs-locals');
 var {sequelize} = require('./models/index');
 var models = require('./models/index');
@@ -35,7 +34,7 @@ console.log(path.join(__dirname));
 
 // main page
 app.get('/', function(req, res) {
-  res.render('login');
+  res.render('index');
 });
 
 
