@@ -1,17 +1,15 @@
 <% layout('layout/layout')%>
-<h3>시간표의 기믹</h3>
+
+
 <form action="/auth/login_process" method="post">
-    <table>
-        <tr>
-            <td>이메일 : </td>
-            <td><input type="text" name="email" placeholder=""></td>
-        </tr>
-        <tr>
-            <td>비밀번호 : </td>
-            <td><input type="password" name="pwd" placeholder="소중한비밀번호"></td>
-        </tr>
-        <tr>
-          <td><input type="submit" value="login"></td>
-        </tr>
-    </table>
+    <div class = "container1" align = "center">
+     <h2>시간표의 기믹</h2>
+        <h3>이메일</h3>
+        <input type="text" name="email" placeholder="">
+        <div class = "password">
+        <h3>비밀번호</h3>
+        <input type="password" name="pwd" placeholder="소중한비밀번호">
+        <input type="submit" value="login">
+        </div>
+    </div>
 </form>
