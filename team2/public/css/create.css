@@ -15,8 +15,6 @@ header p {
 }
 
 footer {
-    position: fixed;
-    width: 375px;
     height: 46px;
     display: flex;
     background-color: #ef5757;
@@ -31,16 +29,19 @@ footer p {
 
 .container1 {
     margin: auto;
+    width: 375px;
     height: 593px;
 }
 
 .container2 {
     margin: auto;
+    width: 375px;
     height: 593px;
 }
 
 .container3 {
     margin: auto;
+    width: 375px;
     height: 593px;
 }
 
