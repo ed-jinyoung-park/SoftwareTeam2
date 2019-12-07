@@ -1,13 +1,13 @@
 <% layout('../layout/layout')%>
 
-<a href='/'>돌아가기</a>
+<a href='/index'>돌아가기</a>
 <!-- 학생이름 나열  -->
 
 <ol>
   <% for(var i = 0; i< students.length; i++){%> 
     <li>
       <a href='/student/show/<%= students[i].id %>'>
-        <%= students[i].st_name %>
+        <%= students[i].id %>
       </a>
     </li>
   <% }; %>
@@ -23,6 +23,21 @@
     <p>3전공 : <%= student.major3%></p>
     <a href="/student/update/<%=student.id%>">수정하기</a>
     <a href="/student/delete/<%=student.id%>">삭제하기</a>
+
+    <% if(condition){ %>
+      <h2>조건 보기</h2>
+      <p>총 학점 수 : <%= condition.grade_num%></p>
+      <p>전공 개수 : <%= condition.major_num%></p>
+      <p>교양 개수 : <%= condition.general_num%></p>
+      <p>공강 : <%= condition.vacant_day%></p>
+      <p>고정과목 1 : <%= condition.sub_fix_1%></p>
+      <p>고정과목 2 : <%= condition.sub_fix_2%></p>
+      <p>고정과목 3 : <%= condition.sub_fix_3%></p>
+      <p>S/U 여부 : <%= condition.su_sub%></p>
+      <a href="/student/<%=student.id%>/condition/update">수정하기</a>
+      <a href="/student/<%=student.id%>/condition/delete">삭제하기</a>
+    <% } %>
+
   <% } else { %>
   <% } %>
 </article>

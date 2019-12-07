@@ -21,9 +21,9 @@ module.exports = (sequelize, DataTypes) => {
     major_num: {type: DataTypes.INTEGER, allowNull: false},
     general_num: {type: DataTypes.INTEGER, allowNull: false},
     vacant_day: {type: DataTypes.STRING, allowNull: true,
-      get() {
+     /* get() {
               return this.getDataValue('vacant_day').split(',')
-          }
+          } */
     },
     sub_fix_1: {type: DataTypes.STRING, allowNull: true},
     sub_fix_2: {type: DataTypes.STRING, allowNull: true},

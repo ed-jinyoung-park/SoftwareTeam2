@@ -3,7 +3,6 @@
 <form action="/student/create" method="post">
   <h2>개인정보 입력</h2>
 
-
   <div class = "container1" align = "center">
    <h3>학번</h3>
 
@@ -21,6 +20,7 @@
     <option value="9학기">9학기</option>
     <option value="9학기초과">9학기초과</option>
    </select>
+   
   <br>
   <h3>제1전공</h3>
   <select name="major1">
@@ -42,10 +42,9 @@
       <option value="<%= minor_list[i] %>"><%= minor_list[i] %></option>
     <% }; %>
   </select>
-
   <p>
     <input type="submit">
   </p>
+  </div>
 
- </div>
 </form>

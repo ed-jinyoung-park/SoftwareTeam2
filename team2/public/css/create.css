@@ -1,10 +1,19 @@
+
 body {
+    padding-top: 57px;
+    padding-bottom: 46px;
     margin: auto;
 }
 
 header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
     height: 57px;
     display: flex;
+    z-index: 1;
+    background: white;
 }
 
 header p {
@@ -15,16 +24,54 @@ header p {
 }
 
 footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     height: 46px;
     display: flex;
     background-color: #ef5757;
+    text-align: center;
 }
 
-footer p {
+footer nav {
+    width: 100%;
+}
+
+footer ul {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    margin-bottom: 0;
+    height: 100%;
+}
+
+footer ul li {
+    height: 25px;
     font-size: 14px;
     margin: auto;
     color: white;
     font-weight: bold;
+    display: inline;
+    position: relative;    
+}
+
+.head-container {
+    padding-top: 130px;
+    margin: auto;
+    width: 100%;
+    height: 180px;
+    background-color: #ef5757;
+}
+
+.head-container h3 {
+    color: white;
+}
+
+.login-container {
+    margin: auto;
+    width: 375px;
+    height: 393px;
 }
 
 .container1 {
@@ -42,10 +89,6 @@ footer p {
 .container3 {
     margin: auto;
     width: 375px;
-}
-
-#selected-subjects {
-    height: 324px;
 }
 
 .sub-search {
@@ -126,6 +169,7 @@ footer p {
     display: flex;
     margin-left: 14px;
     margin-right: 14px;
+
 }
 
 .checkbox3 {
@@ -185,6 +229,7 @@ h3 {
 
 p {
     color: #ef5757;
+    margin-top: auto;
 }
 
 select {
@@ -266,10 +311,12 @@ input[type="checkbox"] + label {
     font-weight: bold;
     color: #ef5757;
     margin-top: 3px;
+    box-sizing: content-box;
 }
 
 input[type="checkbox"]:checked + label {
-	background-color: #ff9494;
+    background-color: #ff9494;
+    box-sizing: content-box;
 }
 
 *:focus {
@@ -308,3 +355,24 @@ p.selected-sub {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+input.img-button1 {
+    background: url('../icon/refresh.svg' ) no-repeat;
+    border: none;
+    width: 26px;
+    height: 26px;
+  }
+
+  input.img-button2 {
+    background: url('../icon/timetable.svg') no-repeat;
+    border: none;
+    width: 26px;
+    height: 26px;
+  }
+
+  input.img-button3 {
+    background: url('../icon/Profile.svg') no-repeat;
+    border: none;
+    width: 26px;
+    height: 26px;
+  }
