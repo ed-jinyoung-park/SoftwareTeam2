@@ -113,10 +113,9 @@ router.post('/:id/condition/create', function(req,res){
     sub_fix_1:user_condition.sub_fix_1,
     sub_fix_2:user_condition.sub_fix_2,
     sub_fix_3:user_condition.sub_fix_3,
-    su_sub:user_condition.sub_fix_3
-  });
-
-
+    su_sub:user_condition.su
+  })
+  
   res.redirect('/student/'+id+'/recomm/first');
 });
 

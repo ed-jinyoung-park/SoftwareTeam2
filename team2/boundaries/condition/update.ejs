@@ -1,0 +1,81 @@
+<% layout('../layout/layout')%>
+
+<form action="/student/<%=student.id%>/condition/update" method="post">
+    <h2>조건 입력</h2>
+
+    <div class="container3" align = center style="display: flex;flex-direction:column;">
+      <h3>이수할 학점</h3>  
+      <div class="stylebox">
+        <select name="totalCredit">
+          <option value="<%=condition.grade_num%>" hidden><%=condition.grade_num%></option>
+          <option value="14 ~ 16 학점">14 ~ 16 학점</option>
+          <option value="17 ~ 19 학점">17 ~ 19 학점</option>
+          <option value="20 학점 이상">20 학점 이상</option>
+        </select>
+        <br>
+      </div>
+      <h3>과목 수</h3> 
+      <div class="stylebox1">
+          <div class = "input1">
+          <input type="text" name="majorCredit" value="<%=condition.major_num%>" placeholder="전공"><p>개</p>
+          </div>
+          <div class = "input2">
+          <input type="text" name="generalCredit" value="<%=condition.general_num%>" placeholder="교양"><p>개</p>
+          </div>
+      </div>
+      <h3>공강 요일</h3>
+      <div class="stylebox" style="display: flex;flex-direction:column;">
+          <div class = "checkbox" style="display: flex;">
+              <div class = "checkbox1">
+              <input type="checkbox" name="vacant_day" value="mon" id="chk1">
+              <label for = "chk1"></label><p>월</p>
+              </div>
+              <div class = "checkbox2">
+              <input type="checkbox" name="vacant_day" value="tue" id="chk2">
+              <label for = "chk2"></label><p>화</p>
+              </div>
+              <div class = "checkbox2">
+                <input type="checkbox" name="vacant_day" value="wed" id="chk3">
+                <label for = "chk3"></label><p>수</p>
+              </div>
+              <div class = "checkbox2">
+                <input type="checkbox" name="vacant_day" value="thu" id="chk4">
+                <label for = "chk4"></label><p>목</p>
+              </div>
+              <div class = "checkbox3">
+                <input type="checkbox" name="vacant_day" value="fri" id="chk5">
+                <label for="chk5"></label><p>금</p>
+              </div>
+          </div>
+      </div>
+      <h3>과목 고정</h3>
+      <div class="stylebox" style="display: flex;flex-direction:column;">
+  
+            <input type="text" name="sub_fix_1" value="<%=condition.sub_fix_1%>" placeholder="고정 과목 1">
+            <input type="text" name="sub_fix_2" value="<%=condition.sub_fix_2%>" placeholder="고정 과목 2">
+            <input type="text" name="sub_fix_3" value="<%=condition.sub_fix_3%>" placeholder="고정 과목 3">
+      </div>
+      <h3>S/U 과목 포함</h3>
+        <div class="stylebox" style="display: flex;flex-direction:column;">
+        <div class = "checkboxSU" style="display: flex;">
+              <div class = "checkbox1">
+              <input type="checkbox" name="su" value="majorSU" id="chk6">
+              <label for = "chk6"></label><p>전공 S/U</p>
+              </div>
+              <div class = "checkbox2">
+              <input type="checkbox" name="su" value="generalSU" id="chk7">
+              <label for = "chk7"></label><p>교양 S/U</p>
+              </div>
+              <div class = "checkbox3">
+                <input type="checkbox" name="su" value="noSU" id="chk8">
+                <label for = "chk8"></label><p>미포함</p>
+              </div>
+          </div>
+      </div>
+      
+      <p>
+        <input type="submit">
+      </p>
+          
+    </div>
+</form>

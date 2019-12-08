@@ -1,5 +1,29 @@
 <% layout('layout/layout')%>
 
+
 <h1>시간표 추천 서비스</h1>
-<a href="/student/create">시작하기</a>
-<a href="/student/show">학생 정보 보기</a> 
+<div class = "container1">
+  <a href="/student/create">시작하기</a>
+  <a href="/student/show">학생 정보 보기</a>
+</div>
+
+<script>
+    $(document).ready(function(){
+       var path= $(location).attr('pathname');
+       if (path == "/index") {
+          $('.img-button1').css("opacity","0.5");
+          $('.img-button2').css("opacity","0.5");
+          $('.img-button3').css("opacity","0.5");
+       }
+    });
+
+      $(document).ready(function(){
+         var path= $(location).attr('pathname');
+         if (path == "/student/create") {
+            $('.img-button1').css("opacity","0.5");
+            $('.img-button2').css("opacity","1");
+            $('.img-button3').css("opacity","0.5");
+         }
+      });
+
+ </script>

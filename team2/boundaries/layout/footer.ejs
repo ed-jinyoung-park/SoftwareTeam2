@@ -1,3 +1,46 @@
-<footer>
- <p>footer</p>
+<footer id="footer">
+ <nav>
+    <ul>
+     <li>
+        <a href="/index">
+        <input type="button" class="img-button1">
+        </a>
+     </li>
+     <li>
+        <a href="/student/create">
+        <input type="button" class="img-button2">
+      </a>
+    </li>
+     <li>
+        <a href="/student/show">
+        <input type="button" class="img-button3">
+        </a>
+    </li>
+    </ul>
+    </nav>
 </footer>
+
+<script>
+      $(document).ready(function(){
+         var path= $(location).attr('pathname');
+         if (path == "/index") {
+            $('.img-button1').css("opacity","0.5") ;
+            $('.img-button2').css("opacity","0.5");
+            $('.img-button3').css("opacity","0.5");
+         }
+
+           if (path == "/student/create") {
+              $('.img-button1').css("opacity","0.5");
+              $('.img-button2').css("opacity","1");
+              $('.img-button3').css("opacity","0.5");
+           }
+
+           if (path == "/student/show") {
+              $('.img-button1').css("opacity","0.5");
+              $('.img-button2').css("opacity","0.5");
+              $('.img-button3').css("opacity","1");
+           }
+
+      });
+  
+   </script>

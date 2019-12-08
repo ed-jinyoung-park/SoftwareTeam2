@@ -2,12 +2,13 @@
 <h2>이수과목 추가 입력</h2>
   <div class = "container2" align = "center">
     <div>
-      <input id="subjects" type="text" />
+      <div class = "sub-search">
+        <input id="subjects" type="text" />
+      </div>
       <button id="click">추가하기</button>
     </div>
-    <div id="selected-subjects">
-    수강 과목 리스트
-    </div>
+    <h3 class = "sublist">수강 과목 리스트</h3>
+    <div id="selected-subjects"></div>
     <a href="/" id="subject-array" class="button">완료</a>
   </div>
   
@@ -32,7 +33,7 @@
 
   $("#click").on("click", function () {
     var newSelected = $("#subjects").val();
-    var thehtml = '<br/>' + $("#subjects").val();
+    var thehtml = '<div class = "selsub"><p class="selected-sub">' + $("#subjects").val()+'</p></div>';
     var selectedItems = $('#selected-subjects').html();
     if(selectedItems.indexOf(newSelected) === -1){
       $('#selected-subjects').append(thehtml);
@@ -43,9 +44,5 @@
     }
     $("#auto").val('');
   });
-
-
-
-
 
 </script>

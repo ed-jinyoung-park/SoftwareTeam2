@@ -1,30 +1,93 @@
+
 body {
+    padding-top: 57px;
+    padding-bottom: 46px;
     margin: auto;
+
 }
 
 header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
     height: 57px;
     display: flex;
+    z-index: 1;
+    background: white;
 }
 
 header p {
-    font-size: 14px;    
+    font-size: 14px;
     margin: auto;
     color: #ef5757;
     font-weight: bold;
 }
 
+header .push {
+    width: 66px;
+    height: 57px;
+}
+
+header .back {
+    width: 66px;
+    height: 57px;
+    display: flex;
+}
+
+header a {
+    margin: auto;
+}
+
 footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     height: 46px;
     display: flex;
     background-color: #ef5757;
+    text-align: center;
 }
 
-footer p {
+footer nav {
+    width: 100%;
+}
+
+footer ul {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    margin-bottom: 0;
+    height: 100%;
+}
+
+footer ul li {
+    height: 25px;
     font-size: 14px;
     margin: auto;
     color: white;
     font-weight: bold;
+    display: inline;
+    position: relative;    
+}
+
+.head-container {
+    padding-top: 130px;
+    margin: auto;
+    width: 100%;
+    height: 180px;
+    background-color: #ef5757;
+}
+
+.head-container h3 {
+    color: white;
+}
+
+.login-container {
+    margin: auto;
+    width: 375px;
+    height: 393px;
 }
 
 .container1 {
@@ -42,28 +105,22 @@ footer p {
 .container3 {
     margin: auto;
     width: 375px;
-    height: 593px;
 }
 
-#selected-subjects {
-    height: 324px;
-}
-
-.container2 input[type="text"] {
+.sub-search {
     width: 295px;
     height: 48px;
     border-radius: 24px;
     border: 2px solid #ff9494;
-    text-indent: 20px;
     margin-bottom: 16px;
     color: #ef5757;
-    box-sizing:border-box;
+    box-sizing: border-box;
     display: flex;
-
     background: url('../icon/Search.svg') no-repeat 93% 50%;
     -moz-appearance: none;
     -webkit-appearance: none; 
 }
+
 
 .stylebox1 {
     margin: auto;
@@ -128,6 +185,7 @@ footer p {
     display: flex;
     margin-left: 14px;
     margin-right: 14px;
+
 }
 
 .checkbox3 {
@@ -187,6 +245,7 @@ h3 {
 
 p {
     color: #ef5757;
+    margin-top: auto;
 }
 
 select {
@@ -206,6 +265,29 @@ select {
 }
 
 input[type="text"] {
+    width: 295px;
+    height: 48px;
+    border-radius: 24px;
+    border: 2px solid #ff9494;
+    text-indent: 20px;
+    margin-bottom: 16px;
+    color: #ef5757;
+    box-sizing:border-box;
+    display: flex;
+}
+
+.container2 input[type="text"] {
+    border: none;
+    text-indent: 20px;
+    width: 230px;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: auto auto auto 5px;;
+}
+
+input[type="password"] {
     width: 295px;
     height: 48px;
     border-radius: 24px;
@@ -245,8 +327,76 @@ input[type="checkbox"] + label {
     font-weight: bold;
     color: #ef5757;
     margin-top: 3px;
+    box-sizing: content-box;
 }
 
 input[type="checkbox"]:checked + label {
-	background-color: #ff9494;
+    background-color: #ff9494;
+    box-sizing: content-box;
 }
+
+*:focus {
+    outline: none;
+}
+
+.sublist {
+    text-align: center;
+    text-indent: 0px;
+    font-weight: bold;
+    margin: 10px auto 10px auto;
+}
+
+.selsub {
+    width: 240px;
+    height: 30px;
+    font-weight: normal;
+    background: url('../icon/No.svg') no-repeat 96% 50%;
+    border-radius: 24px;
+    border: 2px solid #ef5757;
+    margin: 10px auto;
+    display: flex;
+
+}
+
+p.selected-sub {
+    padding-left: 15px;
+    text-align: left;
+    font-size: 15px;
+    width: 190px;
+    height: 30px;
+    margin-left: 0px;
+    margin-top: 3px;
+    margin-bottom: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+input.img-button1 {
+    background: url('../icon/refresh.svg' ) no-repeat;
+    border: none;
+    width: 26px;
+    height: 26px;
+  }
+
+  input.img-button2 {
+    background: url('../icon/timetable.svg') no-repeat;
+    border: none;
+    width: 26px;
+    height: 26px;
+  }
+
+  input.img-button3 {
+    background: url('../icon/Profile.svg') no-repeat;
+    border: none;
+    width: 26px;
+    height: 26px;
+  }
+
+  input.backarrow {
+    background: url('../icon/back.svg') no-repeat;
+    border: none;
+    width: 26px;
+    height: 26px;
+  }
+
