@@ -1,9 +1,9 @@
 module.exports = function(){
   var fs = require('fs');
   var csv = require('csv');
-  var Subject = require('./models').subject;
+  var Yoram = require('../models').Yoram;
 
-  var input = fs.createReadStream('./subject.csv');
+  var input = fs.createReadStream(__dirname+'/yoram.csv');
   var parser = csv.parse({
     delimiter: ',',
     columns: true
@@ -11,10 +11,16 @@ module.exports = function(){
 
   var transform = csv.transform(function(row) {
     var resultObj = {
-      code: row['subject_code'],
-      title: row['title']
+      yoram_year: row['yoram_year'],
+      major: row['major'],
+      subject_name: row['subject_name'],
+      recom_year: row['recom_year'],
+      category: row['category'],
+      major1_prop: row['major1_prop'],
+      major2_prop: row['major2_prop'],
+      credit: row['credit']
     }
-    Subject.create(resultObj)
+    Yoram.create(resultObj)
       .then(function() {
         console.log('Record created')
       })

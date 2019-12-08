@@ -4,7 +4,6 @@ var path = require('path');
 var fs = require('fs');
 var mysql = require('mysql');
 var models = require('../models/index');
-var subject_insert = require('../subject_insert.js');
 var Op = require('sequelize').Op;
 
 module.exports = router;

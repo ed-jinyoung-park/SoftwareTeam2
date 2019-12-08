@@ -13,8 +13,7 @@ var infoManageRouter = require('./controllers/user_info_management.js');
 var loginRouter = require('./controllers/session.js');
 var ejsLocals = require('ejs-locals');
 var {sequelize} = require('./models/index');
-var models = require('./models/index');
-var subject_insert = require('./subject_insert.js');
+
 
 app.set('view engine', 'ejs');
 app.set('views', './boundaries');
@@ -26,12 +25,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 // student create, read, update, delete 등 모든 router
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/static', express.static(path.join(__dirname, 'public')));
-app.use('/student', express.static(path.join(__dirname, 'public')));
-app.use('/student', studentRouter);
+app.use('/student',studentRouter);
 app.use(infoManageRouter);
 app.use(loginRouter);
 
-console.log(path.join(__dirname));
 
 // main page
 app.get('/', function(req, res) {
