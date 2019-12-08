@@ -3,6 +3,7 @@ body {
     padding-top: 57px;
     padding-bottom: 46px;
     margin: auto;
+
 }
 
 header {
@@ -17,10 +18,25 @@ header {
 }
 
 header p {
-    font-size: 14px;    
+    font-size: 14px;
     margin: auto;
     color: #ef5757;
     font-weight: bold;
+}
+
+header .push {
+    width: 66px;
+    height: 57px;
+}
+
+header .back {
+    width: 66px;
+    height: 57px;
+    display: flex;
+}
+
+header a {
+    margin: auto;
 }
 
 footer {
@@ -376,3 +392,11 @@ input.img-button1 {
     width: 26px;
     height: 26px;
   }
+
+  input.backarrow {
+    background: url('../icon/back.svg') no-repeat;
+    border: none;
+    width: 26px;
+    height: 26px;
+  }
+

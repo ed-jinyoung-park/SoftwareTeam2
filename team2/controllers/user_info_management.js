@@ -72,11 +72,12 @@ router.get('/student/delete/:id', function(req,res){
   var id = req.params.id;
   // destroy module을 써서 삭제
   models.Mysubject.destroy({where: {studentId: id}}).then(result=>{
-    
   })
   models.student.destroy({where: {id: id}}).then(result=>{
     console.log("data delete complete");
     res.redirect('/student/show');
+  })
+  models.condition.destroy({where: {studentId: id}}).then(result=>{
   })
   .catch(err=>{
     console.log(err)
