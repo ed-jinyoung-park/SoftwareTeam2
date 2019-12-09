@@ -24,18 +24,15 @@
       $(document).ready(function(){
          var path= $(location).attr('pathname');
 
-
            if (path == "/index") {
-
               $('.img-button2').css("opacity","1");
            }
 
-           if (path == "/student/show") {
-
+           if (path.match("/student/show/*.")) {
               $('.img-button3').css("opacity","1");
            }
 
-           if (path != "/index" && path != "/student/show") {
+           if (path != "/index" && path != "/student/show" && !path.match("/student/show/*.")) {
              $('#footer').css("display","none");
            }
 

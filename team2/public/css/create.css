@@ -410,3 +410,20 @@ input.img-button1 {
 a:hover {
     text-decoration: none;
 }
+
+.edit1 {
+    padding-left: 26px;
+    display: flex;
+    height: 58px;
+    align-items : center;
+    border-top: 1px solid #ACACAC;
+}
+
+.edit2 {
+    padding-left: 26px;
+    display: flex;
+    height: 58px;
+    align-items : center;
+    border-top: 1px solid #ACACAC;
+    border-bottom: 1px solid #ACACAC;
+}
