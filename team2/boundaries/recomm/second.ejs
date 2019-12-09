@@ -1,0 +1,90 @@
+
+<% layout('../layout/layout')%>
+
+<div class="wrap">
+  
+  <div class="text-center">
+      <p>최종 추천 시간표입니다!</p>
+  </div>
+
+  <!-- 시간표 1 : 중간값-->
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col-0">월</th>
+            <th scope="col-1">화</th>
+            <th scope="col-2">수</th>
+            <th scope="col-3">목</th>
+            <th scope="col-4">금</th>
+          </tr>
+        </thead>
+        <tbody id="tt-final">
+          <tr class="row-0">
+            <th scope="row-0">1교시</th>
+            <td class="0-0"></td>
+            <td class="0-1"></td>
+            <td class="0-2"></td>
+            <td class="0-3"></td>
+            <td class="0-4"></td>
+          </tr>
+          <tr class="row-1">
+            <th scope="row">2교시</th>
+            <td class="1-0"></td>
+            <td class="1-1"></td>
+            <td class="1-2"></td>
+            <td class="1-3"></td>
+            <td class="1-4"></td>
+          </tr>
+          <tr class="row-2">
+            <th scope="row">3교시</th>
+            <td class="2-0"></td>
+            <td class="2-1"></td>
+            <td class="2-2"></td>
+            <td class="2-3"></td>
+            <td class="2-4"></td>
+          </tr>
+          <tr class="row-3">
+            <th scope="row">4교시</th>
+            <td class="3-0"></td>
+            <td class="3-1"></td>
+            <td class="3-2"></td>
+            <td class="3-3"></td>
+            <td class="3-4"></td>
+          </tr>
+          <tr class="row-4">
+            <th scope="row">5교시</th>
+            <td class="4-0"></td>
+            <td class="4-1"></td>
+            <td class="4-2"></td>
+            <td class="4-3"></td>
+            <td class="4-4"></td>
+          </tr>
+          <tr class="row-5">
+            <th scope="row">6교시</th>
+            <td class="5-0"></td>
+            <td class="5-1"></td>
+            <td class="5-2"></td>
+            <td class="5-3"></td>
+            <td class="5-4"></td>
+          </tr>
+        </tbody>
+    </table>
+  <!-- // 시간표 1 -->
+
+  <script>
+      $(document).ready(function(){
+    
+        var selectedMatrix=<%-JSON.stringify(selectedMatrix.matrix)%>;
+        var selectedTitleMatrix=<%-JSON.stringify(selectedMatrix.title_matrix)%>;
+        for (i in selectedMatrix){
+          for (j in selectedMatrix){
+            if(selectedMatrix[i][j]==1){
+              $("#tt-final > tr > ."+i+"-"+j).css("background-color","#ef5757");
+              $("#tt-final > tr > ."+i+"-"+j).html(selectedTitleMatrix[i][j]);
+            }
+          }
+        }
+    
+      });
+  </script>

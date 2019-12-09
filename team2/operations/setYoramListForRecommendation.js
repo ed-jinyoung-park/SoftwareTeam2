@@ -27,8 +27,10 @@ module.exports = async function(studentId){
   });
   Condition = Condition.dataValues;
 
+  var recom_year_1 = parseInt(getRecomYear(student.semester))+1;
+  recom_year_1=String(recom_year_1);
   var Yoram = await models.Yoram.findAll({
-     where: {major: student.major1, recom_year: getRecomYear(student.semester)}
+     where: {major: student.major1, recom_year: [getRecomYear(student.semester),recom_year_1]}
   });
   var myYoram = Yoram.map(Yoram => [Yoram.subject_name,Yoram.recom_year,Yoram.category,Yoram.major1_prop,Yoram.major2_prop,Yoram.credit]);
   var myYoram_major=[]
