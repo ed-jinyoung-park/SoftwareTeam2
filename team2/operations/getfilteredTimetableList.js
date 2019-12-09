@@ -4,6 +4,7 @@ var path = require('path');
 var fs = require('fs');
 var mysql = require('mysql');
 var models = require('../models/index');
+var math = require('mathjs');
 
 var aaa = async function(tt_matrix_list, studentId){
   
@@ -23,6 +24,7 @@ var aaa = async function(tt_matrix_list, studentId){
     sub_fix_list.push(condition.sub_fix_3);
   }
   console.log(sub_fix_list);
+
   // 개설과목리스트(Opencourses)에서 고정과목 개설정보 찾기
   var Opencourses = await models.Opencourse.findAll({
     where: {subject_title: sub_fix_list},
@@ -60,26 +62,44 @@ var aaa = async function(tt_matrix_list, studentId){
 
 }
 
+var tt_matrix=math.matrix([
+  [1,0,1,0,0],
+  [0,0,0,0,0],
+  [0,0,0,0,0],
+  [0,0,0,0,0],
+  [0,0,0,0,0],
+  [0,0,0,0,0]
+]);
+
+var time={
+  class_day: "월,수",
+  start_time: 1,
+  end_time: 2
+}
 
 var matchTimetable = function(tt_matrix, time){
 
   var day_list = changeDayToNum(time.class_day);
-  var start_time = time.start_time.trim();
-  var end_time = time.end_time.trim();
+  var start_time = time.start_time;
+  var end_time = time.end_time;
   start_time = parseInt(start_time)-1;
   end_time = parseInt(end_time)-1;
 
   for(i in day_list){
     if(start_time == end_time){
       var a = tt_matrix.subset(math.index(start_time,day_list[i]));
+      console.log(a);
       if (!(math.equal(a,1))) return false;
     }
     else{
       var a = tt_matrix.subset(math.index([start_time,end_time],day_list[i]));
+      console.log(a);
       if (!(math.deepEqual(a,[1,1]))) return false;
     }
   }
+  return true;
 }
+
 
 
 // day data int로 변경
@@ -101,3 +121,6 @@ var changeDayToNum= function(day){
 
   return day_list;
 }
+
+matchTimetable(tt_matrix,time);
+console.log(matchTimetable(tt_matrix,time));
