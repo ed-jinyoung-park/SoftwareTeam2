@@ -3,14 +3,23 @@
 <!-- 학생이름 나열  -->
 
 <ol>
-  <% for(var i = 0; i< students.length; i++){%> 
-    <li>
-      <a href='/student/show/<%= students[i].id %>'>
-        <%= students[i].id %>
-      </a>
-    </li>
-  <% }; %>
+    <% for(var i = 0; i< students.length; i++){%> 
+  
+        <a href='/student/show/<%= students[i].id %>'>
+          <%= students[i].id %>
+        </a>
+  
+    <% }; %>
 </ol>
+
+  <% if(student){ %>
+    <div class = "edit">
+      <a href="/student/update/<%=student.id%>">개인정보 수정</a><br>
+      <a href="/student/<%=student.id%>/condition/update">조건 변경</a>
+    </div>
+  <% } %>
+
+<!--
 
 <article>
   <% if(student){ %> 
@@ -40,3 +49,5 @@
   <% } else { %>
   <% } %>
 </article>
+
+-->
