@@ -222,7 +222,7 @@ router.post('/:id/recomm/second',function(req,res){
   res.redirect('/student/'+id+'/recomm/second/'+selected);
   // });
 })
-
+ 
 router.get('/:id/recomm/second/:selected', function(req,res){
   var id = req.params.id;
   var selected = req.params.selected;
@@ -253,9 +253,9 @@ router.get('/:id/recomm/second/:selected', function(req,res){
       }
     }
 
-    console.log(tt_matrix_median);
-    console.log(tt_matrix_am);
-    console.log(tt_matrix_pm);
+    console.log(tt_matrix_median.timetable[0]);
+    //console.log(tt_matrix_am);
+    //console.log(tt_matrix_pm);
 
     models.student.findOne({
       where: {id: id}
@@ -263,23 +263,108 @@ router.get('/:id/recomm/second/:selected', function(req,res){
       if(selected == 1){
         res.render('./recomm/second',{
           selectedMatrix: tt_matrix_median,
-          student: student
+          student: student,
+          selectedNum: 1
         });
       }
       else if(selected == 2){
         res.render('./recomm/second',{
           selectedMatrix: tt_matrix_am,
-          student: student
+          student: student,
+          selectedNum: 2
         });
       }
       else if(selected == 3){
         res.render('./recomm/second',{
           selectedMatrix: tt_matrix_pm,
-          student: student
+          student: student,
+          selectedNum: 3
         });
       }
 
     })
+  })
+  .catch(err=>{
+    console.log(err);
+  })
+
+});
+
+// 최종 추천 저장
+router.post('/:id/recomm/save', function(req,res){
+  var id = req.params.id;
+  var selectedNum = req.body.selectedNum;
+  console.log(selectedNum);
+
+  var tt_matrix_list=[];
+  
+  setTimetableScore(id).then(result=>{
+    
+    tt_matrix_list=result;
+
+    var tt_matrix_am;
+    var tt_matrix_pm;
+
+    // score 순으로 sort
+    var tt_matrix_median=getMedian(tt_matrix_list);
+    
+    // 오전대 많은 시간표, 오후대 많은 시간표 설정
+    var tt_matrix_count = {am: 0, pm: 0};
+    for (idx in tt_matrix_list){
+      if(countTimetableRange(tt_matrix_list[idx].matrix).am>=tt_matrix_count.am){
+        tt_matrix_count.am = countTimetableRange(tt_matrix_list[idx].matrix).am;
+        tt_matrix_am=tt_matrix_list[idx];
+      }
+      if(countTimetableRange(tt_matrix_list[idx].matrix).pm>=tt_matrix_count.pm){
+        tt_matrix_count.pm = countTimetableRange(tt_matrix_list[idx].matrix).pm;
+        tt_matrix_pm=tt_matrix_list[idx];
+      }
+    }
+
+    console.log(tt_matrix_median.timetable[0]);
+    //console.log(tt_matrix_am);
+    //console.log(tt_matrix_pm);
+    if (selectedNum ==1){
+      for(idx in tt_matrix_median.timetable){
+        models.Timetable.create({
+          studentId: id,
+          title: tt_matrix_median.timetable[idx].title,
+          day: tt_matrix_median.timetable[idx].day,
+          start_time: tt_matrix_median.timetable[idx].start_time,
+          end_time: tt_matrix_median.timetable[idx].end_time,
+        }).then(result=>{
+          res.redirect('/');
+        })
+      }
+    }
+    if (selectedNum ==2){
+      for(idx in tt_matrix_am.timetable){
+        models.Timetable.create({
+          studentId: id,
+          title: tt_matrix_am.timetable[idx].title,
+          day: tt_matrix_am.timetable[idx].day,
+          start_time: tt_matrix_am.timetable[idx].start_time,
+          end_time: tt_matrix_am.timetable[idx].end_time,
+        }).then(result=>{
+          res.redirect('/');
+        })
+      }
+    }
+    if (selectedNum ==3){
+      for(idx in tt_matrix_pm.timetable){
+        models.Timetable.create({
+          studentId: id,
+          title: tt_matrix_pm.timetable[idx].title,
+          day: tt_matrix_pm.timetable[idx].day,
+          start_time: tt_matrix_pm.timetable[idx].start_time,
+          end_time: tt_matrix_pm.timetable[idx].end_time,
+        }).then(result=>{
+          res.redirect('/');
+        })
+      }
+    }
+    
+
   })
   .catch(err=>{
     console.log(err);

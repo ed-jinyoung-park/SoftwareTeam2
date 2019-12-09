@@ -8,6 +8,7 @@
   </div>
 
   <!-- 시간표 1 : 중간값-->
+  <form action="/student/<%=student.id%>/recomm/save" method="post">
     <table class="table">
         <thead>
           <tr>
@@ -70,6 +71,9 @@
           </tr>
         </tbody>
     </table>
+    <input type="hidden" name="selectedNum" value=<%=selectedNum%>>
+    <input type="submit" class="timetable-select" value="저장하기">
+  </form>
   <!-- // 시간표 1 -->
 
   <script>
