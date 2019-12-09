@@ -53,29 +53,14 @@ var aaa = async function(tt_matrix_list, studentId){
 
   for(i in tt_matrix_list){
     var tt_matrix = tt_matrix_list[i].matrix;
-    for (j in sub_fix_timetable_list){
-      for (k in sub_fix_timetable_list[j].timetable){
+      for (j in sub_fix_timetable_list[0].timetable){
+        // 고정과목 1 분반리스트 중 하나가 timetable이랑 맞으면 true, 아니면 false
         matchTimetable(tt_matrix, sub_fix_timetable_list[j].timetable[k]); 
       }
-    }
   }
 
 }
 
-var tt_matrix=math.matrix([
-  [1,0,1,0,0],
-  [0,0,0,0,0],
-  [0,0,0,0,0],
-  [0,0,0,0,0],
-  [0,0,0,0,0],
-  [0,0,0,0,0]
-]);
-
-var time={
-  class_day: "월,수",
-  start_time: 1,
-  end_time: 2
-}
 
 var matchTimetable = function(tt_matrix, time){
 
@@ -121,6 +106,3 @@ var changeDayToNum= function(day){
 
   return day_list;
 }
-
-matchTimetable(tt_matrix,time);
-console.log(matchTimetable(tt_matrix,time));
