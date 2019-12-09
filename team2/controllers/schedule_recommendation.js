@@ -12,6 +12,7 @@ var Op = require('sequelize').Op;
 var setYoramListForRecommendation = require('../operations/setYoramListForRecommendation.js');
 var setTimetableScore = require('../operations/SetTimetableScore');
 var getfilteredTimetableList = require('../operations/getfilteredTimetableList');
+var getYoramListForTimetable = require('../operations/getYoramListForTimetable');
 var math = require('mathjs');
 
 module.exports = router;
@@ -159,7 +160,6 @@ router.get('/:id/recomm/first', function(req, res){
   
   var id=req.params.id;
   // 개인조건, 개설과목에 맞는 요람을 필터링해서 StudentYoram 테이블에 저장
-  // setYoramListForRecommendation(id);
   
   // 추천 0단계 - 같은 학기, 전공 학생들의 시간표 패턴 유사도 점수 구하기
   var tt_matrix_list=[];
@@ -187,10 +187,10 @@ router.get('/:id/recomm/first', function(req, res){
       }
     }
 
-    console.log(tt_matrix_median.matrix);
-    console.log(tt_matrix_am.matrix);
-    console.log(tt_matrix_pm.matrix);
-
+    console.log(tt_matrix_median);
+    console.log(tt_matrix_am);
+    console.log(tt_matrix_pm);
+    console.log(tt_matrix_median.timetable[0]);
     models.student.findOne({
       where: {id: id}
     }).then(student=>{
@@ -214,6 +214,80 @@ router.get('/:id/recomm/first', function(req, res){
  
 });
 
+// 추천 1단계 저장
+router.post('/:id/recomm/second',function(req,res){
+  var id = req.params.id;
+  var selected = req.body.selected;
+  // setYoramListForRecommendation(id).then(result=>{
+  res.redirect('/student/'+id+'/recomm/second/'+selected);
+  // });
+})
+
+router.get('/:id/recomm/second/:selected', function(req,res){
+  var id = req.params.id;
+  var selected = req.params.selected;
+  console.log(selected);
+
+  var tt_matrix_list=[];
+  
+  setTimetableScore(id).then(result=>{
+    
+    tt_matrix_list=result;
+
+    var tt_matrix_am;
+    var tt_matrix_pm;
+
+    // score 순으로 sort
+    var tt_matrix_median=getMedian(tt_matrix_list);
+    
+    // 오전대 많은 시간표, 오후대 많은 시간표 설정
+    var tt_matrix_count = {am: 0, pm: 0};
+    for (idx in tt_matrix_list){
+      if(countTimetableRange(tt_matrix_list[idx].matrix).am>=tt_matrix_count.am){
+        tt_matrix_count.am = countTimetableRange(tt_matrix_list[idx].matrix).am;
+        tt_matrix_am=tt_matrix_list[idx];
+      }
+      if(countTimetableRange(tt_matrix_list[idx].matrix).pm>=tt_matrix_count.pm){
+        tt_matrix_count.pm = countTimetableRange(tt_matrix_list[idx].matrix).pm;
+        tt_matrix_pm=tt_matrix_list[idx];
+      }
+    }
+
+    console.log(tt_matrix_median);
+    console.log(tt_matrix_am);
+    console.log(tt_matrix_pm);
+
+    models.student.findOne({
+      where: {id: id}
+    }).then(student=>{
+      if(selected == 1){
+        res.render('./recomm/second',{
+          selectedMatrix: tt_matrix_median,
+          student: student
+        });
+      }
+      else if(selected == 2){
+        res.render('./recomm/second',{
+          selectedMatrix: tt_matrix_am,
+          student: student
+        });
+      }
+      else if(selected == 3){
+        res.render('./recomm/second',{
+          selectedMatrix: tt_matrix_pm,
+          student: student
+        });
+      }
+
+    })
+  })
+  .catch(err=>{
+    console.log(err);
+  })
+
+});
+
+// 중간값 구하는 함수
 var getMedian= function(tt_matrix_list){
   var sorted=tt_matrix_list.sort(function(a, b){
     if(a.score > b.score){
@@ -233,6 +307,7 @@ var getMedian= function(tt_matrix_list){
   else return sorted[half-1];
 }
 
+// 시간표 오전대, 오후대 시간 설정
 var countTimetableRange= function(tt_matrix){
   var tt_matrix = math.matrix(tt_matrix);
   // 오전

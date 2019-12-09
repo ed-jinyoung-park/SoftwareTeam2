@@ -15,71 +15,76 @@
   </div>
 
   <!-- 시간표 1 : 중간값-->
-  <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col-0">월</th>
-          <th scope="col-1">화</th>
-          <th scope="col-2">수</th>
-          <th scope="col-3">목</th>
-          <th scope="col-4">금</th>
-        </tr>
-      </thead>
-      <tbody id="tt-median">
-        <tr class="row-0">
-          <th scope="row-0">1교시</th>
-          <td class="0"></td>
-          <td class="1"></td>
-          <td class="2"></td>
-          <td class="3"></td>
-          <td class="4"></td>
-        </tr>
-        <tr class="row-1">
-          <th scope="row">2교시</th>
-          <td class="5"></td>
-          <td class="6"></td>
-          <td class="7"></td>
-          <td class="8"></td>
-          <td class="9"></td>
-        </tr>
-        <tr class="row-2">
-          <th scope="row">3교시</th>
-          <td class="10"></td>
-          <td class="11"></td>
-          <td class="12"></td>
-          <td class="13"></td>
-          <td class="14"></td>
-        </tr>
-        <tr class="row-3">
-          <th scope="row">4교시</th>
-          <td class="15"></td>
-          <td class="16"></td>
-          <td class="17"></td>
-          <td class="18"></td>
-          <td class="19"></td>
-        </tr>
-        <tr class="row-4">
-          <th scope="row">5교시</th>
-          <td class="20"></td>
-          <td class="21"></td>
-          <td class="22"></td>
-          <td class="23"></td>
-          <td class="24"></td>
-        </tr>
-        <tr class="row-5">
-          <th scope="row">6교시</th>
-          <td class="25"></td>
-          <td class="26"></td>
-          <td class="27"></td>
-          <td class="28"></td>
-          <td class="29"></td>
-        </tr>
-      </tbody>
-  </table>
-  <button class="timetable-select">선택하기</button>
+  <form action="/student/<%=student.id%>/recomm/second" method="post">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col-0">월</th>
+            <th scope="col-1">화</th>
+            <th scope="col-2">수</th>
+            <th scope="col-3">목</th>
+            <th scope="col-4">금</th>
+          </tr>
+        </thead>
+        <tbody id="tt-median">
+          <tr class="row-0">
+            <th scope="row-0">1교시</th>
+            <td class="0-0"></td>
+            <td class="0-1"></td>
+            <td class="0-2"></td>
+            <td class="0-3"></td>
+            <td class="0-4"></td>
+          </tr>
+          <tr class="row-1">
+            <th scope="row">2교시</th>
+            <td class="1-0"></td>
+            <td class="1-1"></td>
+            <td class="1-2"></td>
+            <td class="1-3"></td>
+            <td class="1-4"></td>
+          </tr>
+          <tr class="row-2">
+            <th scope="row">3교시</th>
+            <td class="2-0"></td>
+            <td class="2-1"></td>
+            <td class="2-2"></td>
+            <td class="2-3"></td>
+            <td class="2-4"></td>
+          </tr>
+          <tr class="row-3">
+            <th scope="row">4교시</th>
+            <td class="3-0"></td>
+            <td class="3-1"></td>
+            <td class="3-2"></td>
+            <td class="3-3"></td>
+            <td class="3-4"></td>
+          </tr>
+          <tr class="row-4">
+            <th scope="row">5교시</th>
+            <td class="4-0"></td>
+            <td class="4-1"></td>
+            <td class="4-2"></td>
+            <td class="4-3"></td>
+            <td class="4-4"></td>
+          </tr>
+          <tr class="row-5">
+            <th scope="row">6교시</th>
+            <td class="5-0"></td>
+            <td class="5-1"></td>
+            <td class="5-2"></td>
+            <td class="5-3"></td>
+            <td class="5-4"></td>
+          </tr>
+        </tbody>
+    </table>
+    <input type="hidden" name="selected" value="1">
+    <input type="submit" class="timetable-select" value="선택하기">
+  </form>
   <!-- // 시간표 1 -->
-    <!-- 시간표 2 : 오전 편중-->
+  
+  <!-- 시간표 2 : 오전대-->
+  <form action="/student/<%=student.id%>/recomm/second" method="post">
     <table class="table">
         <thead>
           <tr>
@@ -94,120 +99,126 @@
         <tbody id="tt-am">
           <tr class="row-0">
             <th scope="row-0">1교시</th>
-            <td class="0"></td>
-            <td class="1"></td>
-            <td class="2"></td>
-            <td class="3"></td>
-            <td class="4"></td>
+            <td class="0-0"></td>
+            <td class="0-1"></td>
+            <td class="0-2"></td>
+            <td class="0-3"></td>
+            <td class="0-4"></td>
           </tr>
           <tr class="row-1">
             <th scope="row">2교시</th>
-            <td class="5"></td>
-            <td class="6"></td>
-            <td class="7"></td>
-            <td class="8"></td>
-            <td class="9"></td>
+            <td class="1-0"></td>
+            <td class="1-1"></td>
+            <td class="1-2"></td>
+            <td class="1-3"></td>
+            <td class="1-4"></td>
           </tr>
           <tr class="row-2">
             <th scope="row">3교시</th>
-            <td class="10"></td>
-            <td class="11"></td>
-            <td class="12"></td>
-            <td class="13"></td>
-            <td class="14"></td>
+            <td class="2-0"></td>
+            <td class="2-1"></td>
+            <td class="2-2"></td>
+            <td class="2-3"></td>
+            <td class="2-4"></td>
           </tr>
           <tr class="row-3">
             <th scope="row">4교시</th>
-            <td class="15"></td>
-            <td class="16"></td>
-            <td class="17"></td>
-            <td class="18"></td>
-            <td class="19"></td>
+            <td class="3-0"></td>
+            <td class="3-1"></td>
+            <td class="3-2"></td>
+            <td class="3-3"></td>
+            <td class="3-4"></td>
           </tr>
           <tr class="row-4">
             <th scope="row">5교시</th>
-            <td class="20"></td>
-            <td class="21"></td>
-            <td class="22"></td>
-            <td class="23"></td>
-            <td class="24"></td>
+            <td class="4-0"></td>
+            <td class="4-1"></td>
+            <td class="4-2"></td>
+            <td class="4-3"></td>
+            <td class="4-4"></td>
           </tr>
           <tr class="row-5">
             <th scope="row">6교시</th>
-            <td class="25"></td>
-            <td class="26"></td>
-            <td class="27"></td>
-            <td class="28"></td>
-            <td class="29"></td>
+            <td class="5-0"></td>
+            <td class="5-1"></td>
+            <td class="5-2"></td>
+            <td class="5-3"></td>
+            <td class="5-4"></td>
           </tr>
         </tbody>
     </table>
-    <button class="timetable-select">선택하기</button>
-    <!-- // 시간표 2-->
-      <!-- 시간표 3: 오후 편중 -->
-  <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col-0">월</th>
-          <th scope="col-1">화</th>
-          <th scope="col-2">수</th>
-          <th scope="col-3">목</th>
-          <th scope="col-4">금</th>
-        </tr>
-      </thead>
-      <tbody id="tt-pm">
-        <tr class="row-0">
-          <th scope="row-0">1교시</th>
-          <td class="0"></td>
-          <td class="1"></td>
-          <td class="2"></td>
-          <td class="3"></td>
-          <td class="4"></td>
-        </tr>
-        <tr class="row-1">
-          <th scope="row">2교시</th>
-          <td class="5"></td>
-          <td class="6"></td>
-          <td class="7"></td>
-          <td class="8"></td>
-          <td class="9"></td>
-        </tr>
-        <tr class="row-2">
-          <th scope="row">3교시</th>
-          <td class="10"></td>
-          <td class="11"></td>
-          <td class="12"></td>
-          <td class="13"></td>
-          <td class="14"></td>
-        </tr>
-        <tr class="row-3">
-          <th scope="row">4교시</th>
-          <td class="15"></td>
-          <td class="16"></td>
-          <td class="17"></td>
-          <td class="18"></td>
-          <td class="19"></td>
-        </tr>
-        <tr class="row-4">
-          <th scope="row">5교시</th>
-          <td class="20"></td>
-          <td class="21"></td>
-          <td class="22"></td>
-          <td class="23"></td>
-          <td class="24"></td>
-        </tr>
-        <tr class="row-5">
-          <th scope="row">6교시</th>
-          <td class="25"></td>
-          <td class="26"></td>
-          <td class="27"></td>
-          <td class="28"></td>
-          <td class="29"></td>
-        </tr>
-      </tbody>
-  </table>
-  <button class="timetable-select">선택하기</button>
+    <input type="hidden" name="selected" value="2">
+    <input type="submit" class="timetable-select" value="선택하기">
+  </form>
+  <!-- // 시간표 2 -->
+
+  <!-- 시간표 3 : 오후대-->
+  <form action="/student/<%=student.id%>/recomm/second" method="post">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col-0">월</th>
+            <th scope="col-1">화</th>
+            <th scope="col-2">수</th>
+            <th scope="col-3">목</th>
+            <th scope="col-4">금</th>
+          </tr>
+        </thead>
+        <tbody id="tt-pm">
+          <tr class="row-0">
+            <th scope="row-0">1교시</th>
+            <td class="0-0"></td>
+            <td class="0-1"></td>
+            <td class="0-2"></td>
+            <td class="0-3"></td>
+            <td class="0-4"></td>
+          </tr>
+          <tr class="row-1">
+            <th scope="row">2교시</th>
+            <td class="1-0"></td>
+            <td class="1-1"></td>
+            <td class="1-2"></td>
+            <td class="1-3"></td>
+            <td class="1-4"></td>
+          </tr>
+          <tr class="row-2">
+            <th scope="row">3교시</th>
+            <td class="2-0"></td>
+            <td class="2-1"></td>
+            <td class="2-2"></td>
+            <td class="2-3"></td>
+            <td class="2-4"></td>
+          </tr>
+          <tr class="row-3">
+            <th scope="row">4교시</th>
+            <td class="3-0"></td>
+            <td class="3-1"></td>
+            <td class="3-2"></td>
+            <td class="3-3"></td>
+            <td class="3-4"></td>
+          </tr>
+          <tr class="row-4">
+            <th scope="row">5교시</th>
+            <td class="4-0"></td>
+            <td class="4-1"></td>
+            <td class="4-2"></td>
+            <td class="4-3"></td>
+            <td class="4-4"></td>
+          </tr>
+          <tr class="row-5">
+            <th scope="row">6교시</th>
+            <td class="5-0"></td>
+            <td class="5-1"></td>
+            <td class="5-2"></td>
+            <td class="5-3"></td>
+            <td class="5-4"></td>
+          </tr>
+        </tbody>
+    </table>
+    <input type="hidden" name="selected" value="3">
+    <input type="submit" class="timetable-select" value="선택하기">
+  </form>
   <!-- // 시간표 3 -->
  
 </div>
@@ -216,24 +227,36 @@
 <script>
   $(document).ready(function(){
 
-    var tt_matrix_median=[<%=tt_matrix_median.matrix%>];
-    for (idx in tt_matrix_median){
-      if(tt_matrix_median[idx]==1){
-        $("#tt-median > tr > ."+idx).css("background-color","#ef5757");
+    var tt_matrix_median=<%-JSON.stringify(tt_matrix_median.matrix)%>;
+    var tt_matrix_median_title=<%-JSON.stringify(tt_matrix_median.title_matrix)%>;
+    for (i in tt_matrix_median){
+      for (j in tt_matrix_median){
+        if(tt_matrix_median[i][j]==1){
+          $("#tt-median > tr > ."+i+"-"+j).css("background-color","#ef5757");
+          $("#tt-median > tr > ."+i+"-"+j).html(tt_matrix_median_title[i][j]);
+        }
       }
     }
 
-    var tt_matrix_am=[<%=tt_matrix_am.matrix%>];
-    for (idx in tt_matrix_am){
-      if(tt_matrix_am[idx]==1){
-        $("#tt-am > tr > ."+idx).css("background-color","#ef5757");
+    var tt_matrix_am=<%-JSON.stringify(tt_matrix_am.matrix)%>;
+    var tt_matrix_am_title=<%-JSON.stringify(tt_matrix_am.title_matrix)%>;
+    for (i in tt_matrix_am){
+      for (j in tt_matrix_am){
+        if(tt_matrix_am[i][j]==1){
+          $("#tt-am > tr > ."+i+"-"+j).css("background-color","#ef5757");
+          $("#tt-am > tr > ."+i+"-"+j).html(tt_matrix_am_title[i][j]);
+        }
       }
     }
 
-    var tt_matrix_pm=[<%=tt_matrix_pm.matrix%>];
-    for (idx in tt_matrix_pm){
-      if(tt_matrix_pm[idx]==1){
-        $("#tt-pm > tr > ."+idx).css("background-color","#ef5757");
+    var tt_matrix_pm=<%-JSON.stringify(tt_matrix_pm.matrix)%>;
+    var tt_matrix_pm_title=<%-JSON.stringify(tt_matrix_pm.title_matrix)%>;
+    for (i in tt_matrix_pm){
+      for (j in tt_matrix_pm){
+        if(tt_matrix_pm[i][j]==1){
+          $("#tt-pm > tr > ."+i+"-"+j).css("background-color","#ef5757");
+          $("#tt-pm > tr > ."+i+"-"+j).html(tt_matrix_pm_title[i][j]);
+        }
       }
     }
 

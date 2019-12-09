@@ -47,14 +47,24 @@ module.exports = async function(studentId){
       [0,0,0,0,0]
     ]);
 
+    var title_matrix=[
+      [0,0,0,0,0],
+      [0,0,0,0,0],
+      [0,0,0,0,0],
+      [0,0,0,0,0],
+      [0,0,0,0,0],
+      [0,0,0,0,0]
+    ]
+
     // 1개의 matrix 생성
     for (k in tt_list_one){
-      tt_matrix = makeMatrix(tt_list_one[k], tt_matrix); 
+      tt_matrix = makeMatrix(tt_list_one[k], tt_matrix);
+      title_matrix = makeTitleMatrix(tt_list_one[k],title_matrix); 
     }
 
     var svd_q = math.sum(SVDJS.SVD(tt_matrix._data).q);
     
-    var tt_matrix_json={id: id, matrix: tt_matrix._data, timetable: tt_list_one, score: svd_q}
+    var tt_matrix_json={id: id, matrix: tt_matrix._data, title_matrix: title_matrix, timetable: tt_list_one, score: svd_q}
     // matrix List에 id 값과 함께 matrix를 push
     tt_matrix_list.push(tt_matrix_json);
   }
@@ -85,6 +95,28 @@ var makeMatrix= function(tt_list_one_class, tt_matrix){
     }
   }
   return tt_matrix;
+}
+
+var makeTitleMatrix = function(tt_list_one_class, title_matrix){
+  var day_list=changeDayToNum(tt_list_one_class.day);
+
+  var start_time = tt_list_one_class.start_time.trim();
+  var end_time = tt_list_one_class.end_time.trim();
+  start_time = parseInt(start_time)-1;
+  end_time = parseInt(end_time)-1;
+
+  // index(행,열),값
+  for(i in day_list){
+    if(start_time==end_time){
+      title_matrix[start_time][day_list[i]]=tt_list_one_class.title;
+    }
+    else{
+      title_matrix[start_time][day_list[i]]=tt_list_one_class.title;
+      title_matrix[end_time][day_list[i]]=tt_list_one_class.title;
+    }
+  }
+  return title_matrix;
+
 }
 
 // day data int로 변경
