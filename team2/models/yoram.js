@@ -9,12 +9,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     yoram_year: {type: DataTypes.INTEGER, allowNull: false},
     major: {type: DataTypes.STRING, allowNull: false},
+    subject_code: {type: DataTypes.STRING, allowNull: false},
     subject_name: {type: DataTypes.STRING, allowNull: false},
-    recom_year: {type: DataTypes.STRING, allowNull: false},
+    recom_year: {type: DataTypes.STRING, allowNull: true},
     category: {type: DataTypes.STRING, allowNull: true},
     major1_prop: {type: DataTypes.STRING, allowNull: false},
     major2_prop: {type: DataTypes.STRING, allowNull: true},
-    credit: {type: DataTypes.INTEGER, allowNull: false}
+    credit: {type: DataTypes.STRING, allowNull: true}
   }, {});
   Yoram.associate = function(models) {
   };

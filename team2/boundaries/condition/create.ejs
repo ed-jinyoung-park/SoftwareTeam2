@@ -50,10 +50,9 @@
 	</div>
 	<h3>과목 고정</h3>
 	<div class="stylebox" style="display: flex;flex-direction:column;">
-
-      	<input type="text" name="sub_fix_1" placeholder="고정 과목 1">
-      	<input type="text" name="sub_fix_2" placeholder="고정 과목 2">
-     	<input type="text" name="sub_fix_3" placeholder="고정 과목 3">
+		<input class="subject-fix" type="text" name="sub_fix_1" placeholder="고정 과목 1">
+		<input class="subject-fix" type="text" name="sub_fix_2" placeholder="고정 과목 2">
+		<input class="subject-fix" type="text" name="sub_fix_3" placeholder="고정 과목 3">
 	</div>
 	<h3>S/U 과목 포함</h3>
   	<div class="stylebox" style="display: flex;flex-direction:column;">
@@ -79,3 +78,19 @@
     	
   </div>
 </form>
+
+<script>
+	$(document).ready(function(){
+		var subjects='<%=subjects%>';
+		var subjects = subjects.split(',');
+		$(".subject-fix").autocomplete({
+			source: subjects,
+			select: function(event, ui){
+				console.log(ui.item);
+			},
+			focus: function(event, ui){
+				return ui.item;
+			}
+		})
+	});
+</script>
