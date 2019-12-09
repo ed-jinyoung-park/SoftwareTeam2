@@ -1,5 +1,6 @@
 <% layout('../layout/layout')%>
-<h2>이수과목 추가 입력</h2>
+
+<h2>이수과목 입력</h2>
   <div class = "container2" align = "center">
     <div>
       <div class = "sub-search">
@@ -7,11 +8,12 @@
       </div>
       <button id="click">추가하기</button>
     </div>
-    <h3 class = "sublist">수강 과목 리스트</h3>
-    <div id="selected-subjects"></div>
-    <a href="/" id="subject-array" class="button">완료</a>
+    <h3 class = "sublist">이수과목 리스트</h3>
+    <div id="selected-subjects" style="margin-bottom: 40px;"></div> 
+    <a href="/student/<%=id%>/condition/create" id="skip" class="button" style="background-color: white; border: 2px solid #ef5757; color: #ef5757">넘어가기</a>
+    <a id="subject-array" class="button" style="color: white;">저장</a>
   </div>
-  
+
 <script>
 
   $(document).ready(function(){
@@ -33,16 +35,34 @@
 
   $("#click").on("click", function () {
     var newSelected = $("#subjects").val();
-    var thehtml = '<div class = "selsub"><p class="selected-sub">' + $("#subjects").val()+'</p></div>';
+    var thehtml = '<div class = "selsub" id='+newSelected+'><p class="selected-sub">' + $("#subjects").val()+'</p></div>';
     var selectedItems = $('#selected-subjects').html();
+
     if(selectedItems.indexOf(newSelected) === -1){
       $('#selected-subjects').append(thehtml);
       path=path+newSelected+',';
-      $('a#subject-array').attr('href',path);  
+      $('a#subject-array').attr('href',path);
     }else{
       alert("Already selected!");
     }
+ 
     $("#auto").val('');
   });
+
+   $('.selsub').on("click", function(){
+
+      var deleteItem = $(this).attr('id');
+      path = path - (deleteItem+',');
+      console.log(deleteItem);
+
+      $('a#subject-array').attr('href',path);
+
+      if (path=='NaN') {
+        console.log('nan');
+        $('a#subject-array').remove(attr('href'));
+      }
+
+      $(this).remove();
+   });
 
 </script>

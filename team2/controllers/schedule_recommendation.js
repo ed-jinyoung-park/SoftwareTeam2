@@ -51,12 +51,13 @@ router.post('/create',function(req,res){
 
 // 입력 2단계 - subject create
 router.get('/:id/subject/create',function(req,res){
+  var id=req.params.id;
   models.subject.findAll({
     attributes: ['title'],
     raw: true
   }).then(function(subjects){
     var subjects = subjects.map(subject => subject.title);
-    res.render('./subject/create',{subjects: subjects});
+    res.render('./subject/create',{subjects: subjects, id: id});
   });
 });
 

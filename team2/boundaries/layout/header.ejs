@@ -1,8 +1,6 @@
 <header id="header" style="display: flex;">
     <div class = "back">
-        <a id="goback" href="">
-           <input type="button" class="backarrow">
-        </a>
+           <button onclick="history.back()" class="backarrow";>
     </div>
  <p id="title">fuck</p>
  <div class = "push"></div>
@@ -12,13 +10,20 @@
 
     $(document).ready(function(){
         var path= $(location).attr('pathname');
-        if (path == "/index") {         
+        if (path == "/index") {     
            $('.back').css("display","none");
            $('.push').css("display", "none");
+           $("#title").text("2019학년도 2학기");
         }
         if (path == "/student/show") {
-            $("#goback").attr("href", "/index");
+            $('.back').css("display","none");
+            $('.push').css("display", "none");
             $("#title").text("계정정보 수정");
+        }
+        if (path == "/student/show/\d") {
+            $('.back').css("display","none");
+            $('.push').css("display", "none");
+            $("#title").text("얍");
         }
     });
 

@@ -204,7 +204,7 @@ footer ul li {
     border: none;
     background-color: #ef5757;
     display: block;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
     line-height: 46px;
     text-decoration: none;
 }
@@ -338,6 +338,9 @@ input[type="checkbox"]:checked + label {
 *:focus {
     outline: none;
 }
+button:focus {
+    outline: none;
+}
 
 .sublist {
     text-align: center;
@@ -377,6 +380,7 @@ input.img-button1 {
     border: none;
     width: 26px;
     height: 26px;
+    opacity: 0.5;
   }
 
   input.img-button2 {
@@ -384,6 +388,7 @@ input.img-button1 {
     border: none;
     width: 26px;
     height: 26px;
+    opacity: 0.5;
   }
 
   input.img-button3 {
@@ -391,12 +396,17 @@ input.img-button1 {
     border: none;
     width: 26px;
     height: 26px;
+    opacity: 0.5;
   }
 
-  input.backarrow {
+  button.backarrow {
     background: url('../icon/back.svg') no-repeat;
     border: none;
     width: 26px;
     height: 26px;
+    margin: auto;
   }
 
+a:hover {
+    text-decoration: none;
+}
