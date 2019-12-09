@@ -6,7 +6,7 @@ var mysql = require('mysql');
 var models = require('../models/index');
 var math = require('mathjs');
 
-var aaa = async function(tt_matrix_list, studentId){
+module.exports= async function(tt_matrix_list, studentId){
   
   // 고정 과목 리스트 추출 - sub_fix_list
   var condition = await models.condition.findOne({
@@ -53,13 +53,47 @@ var aaa = async function(tt_matrix_list, studentId){
 
   for(i in tt_matrix_list){
     var tt_matrix = tt_matrix_list[i].matrix;
+    console.log(tt_matrix);
+    var flag= false;
+    var time1, time2, time3;
       for (j in sub_fix_timetable_list[0].timetable){
+        console.log("11111111111111111111111111111");
         // 고정과목 1 분반리스트 중 하나가 timetable이랑 맞으면 true, 아니면 false
-        matchTimetable(tt_matrix, sub_fix_timetable_list[j].timetable[k]); 
-      }
-  }
+        if (matchTimetable(tt_matrix, sub_fix_timetable_list[0].timetable[j])){
+          time1 = sub_fix_timetable_list[0].timetable[j];
+          // 고정과목 2가 존재할 경우
+          if (sub_fix_timetable_list.length>=2){
+            for (k in sub_fix_timetable_list[1].timetable){
+              if (matchTimetable(tt_matrix, sub_fix_timetable_list[1].timetable[k])){
+                time2 = sub_fix_timetable_list[1].timetable[k];
+                // 고정과목 3이 존재할 경우
+                if (sub_fix_timetable_list.length>=3){
+                  for (m in sub_fix_timetable_list[2].timetable){
+                    if (matchTimetable(tt_matrix, sub_fix_timetable_list[2].timetable[m])){
+                      time3 = sub_fix_timetable_list[2].timetable[m];
+                      tt_matrix_list_new.push(tt_matrix);
+                      flag=true;
+                      break;
+                      // 시간표 통과
+                    }
 
+                  }
+                }
+                else tt_matrix_list_new.push(tt_matrix);
+              }
+              if(flag) break;
+            }            
+          }
+          else tt_matrix_list_new.push(tt_matrix);
+        }
+        if(flag) break;
+      }; 
+  }
+  console.log(tt_matrix_list_new);
+  return tt_matrix_list_new;
 }
+
+
 
 
 var matchTimetable = function(tt_matrix, time){
