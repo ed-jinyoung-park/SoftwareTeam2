@@ -7,12 +7,15 @@ var models = require('../models/index');
 var subject_insert = require('../InsertData/subject_insert.js');
 var opencourse_insert = require('../InsertData/opencourse_insert.js');
 var yoram_insert = require('../InsertData/yoram_insert.js');
+var testdata_insert = require('../InsertData/testdata_insert.js');
 var Op = require('sequelize').Op;
-
+var setYoramListForRecommendation = require('../operations/setYoramListForRecommendation.js');
+var setTimetableScore = require('../operations/SetTimetableScore');
+var getfilteredTimetableList = require('../operations/getfilteredTimetableList');
 module.exports = router;
 
-// 입력 1단계 - student create
-router.get('/create', function(req,res){
+// data insert
+router.get('/data_insert', function(req,res){
   // subject data insert
   models.subject.count().then(c=>{
     if(c==0) subject_insert();
@@ -25,6 +28,29 @@ router.get('/create', function(req,res){
   models.Yoram.count().then(c=>{
     if(c==0) yoram_insert();
   });
+  
+  // test data insert
+  models.student.count().then(c=>{
+    if(c==0){
+      for(var i=1; i<=20;i++){
+        models.student.create({
+          adm_year: '18',
+          semester: '4',
+          major1: '컴퓨터공학'
+        })
+      } 
+    }
+  })
+
+  models.Timetable.count().then(c=>{
+    if(c==0) testdata_insert();
+  });
+
+  res.redirect('/index');
+});
+// 입력 1단계 - student create
+router.get('/create', function(req,res){
+
   var major_list = ["국어국문학","사학","철학","종교학","영미어문","미국문화","유럽문화","중국문화","사회학","정치외교학","심리학","경제학","경영학","신문방송학","미디어&엔터테인먼트","아트&테크놀로지","글로벌한국학","수학","물리학","화학","생명과학","전자공학","컴퓨터공학","화공생명공학","기계공학"];
   var minor_list = ["없음","국어국문학","사학","철학","종교학","영미어문","미국문화","유럽문화","중국문화","사회학","정치외교학","심리학","경제학","경영학","신문방송학","미디어&엔터테인먼트","아트&테크놀로지","글로벌한국학","수학","물리학","화학","생명과학","전자공학","컴퓨터공학","화공생명공학","기계공학","융합소프트웨어","스포츠미디어","바이오융합","여성학","스타트업","정치경제철학","공공인재","일본문화","빅데이터-데이터엔지니어","빅데이터-데이터분석","인공지능"];
   res.render('./student/create',{major_list: major_list, minor_list: minor_list});
@@ -93,7 +119,13 @@ router.get('/:id/subject/create/:array', function(req,res){
 // 입력 3단계 - condition create
 router.get('/:id/condition/create', function(req,res){
   var id = req.params.id;
-  res.render('./condition/create',{id: id});
+  models.subject.findAll({
+    attributes: ['title'],
+    raw: true
+  }).then(function(subjects){
+    var subjects = subjects.map(subject => subject.title);
+    res.render('./condition/create',{id: id, subjects: subjects});
+  });
 });
 
 //입력 3단계 - condition save
@@ -123,6 +155,24 @@ router.post('/:id/condition/create', function(req,res){
 //추천 1단계
 router.get('/:id/recomm/first', function(req, res){
   
+  var id=req.params.id;
+  // 개인조건, 개설과목에 맞는 요람을 필터링해서 StudentYoram 테이블에 저장
+  // setYoramListForRecommendation(id);
+  
+  // 추천 0단계 - 같은 학기, 전공 학생들의 시간표 패턴 유사도 점수 구하기
+  var tt_matrix_list=[];
+  
+  setTimetableScore(id).then(result=>{
+    tt_matrix_list=result;
+  });
+
+  
+  for (matrix in tt_matrix_list){
+    console.log(matrix);
+  }
+
+  getfilteredTimetableList(tt_matrix_list, 1);
+
   res.render('./recomm/first'); 
 });
 

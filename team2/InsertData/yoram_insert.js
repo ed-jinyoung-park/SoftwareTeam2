@@ -13,6 +13,7 @@ module.exports = function(){
     var resultObj = {
       yoram_year: row['yoram_year'],
       major: row['major'],
+      subject_code: row['subject_code'],
       subject_name: row['subject_name'],
       recom_year: row['recom_year'],
       category: row['category'],
