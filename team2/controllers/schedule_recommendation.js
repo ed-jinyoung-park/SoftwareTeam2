@@ -12,6 +12,8 @@ var Op = require('sequelize').Op;
 var setYoramListForRecommendation = require('../operations/setYoramListForRecommendation.js');
 var setTimetableScore = require('../operations/SetTimetableScore');
 var getfilteredTimetableList = require('../operations/getfilteredTimetableList');
+var math = require('mathjs');
+
 module.exports = router;
 
 // data insert
@@ -163,18 +165,97 @@ router.get('/:id/recomm/first', function(req, res){
   var tt_matrix_list=[];
   
   setTimetableScore(id).then(result=>{
+    
     tt_matrix_list=result;
-  });
 
-  
-  for (matrix in tt_matrix_list){
-    console.log(matrix);
-  }
+    var tt_matrix_am;
+    var tt_matrix_pm;
 
-  getfilteredTimetableList(tt_matrix_list, 1);
+    // score 순으로 sort
+    var tt_matrix_median=getMedian(tt_matrix_list);
+    
+    // 오전대 많은 시간표, 오후대 많은 시간표 설정
+    var tt_matrix_count = {am: 0, pm: 0};
+    for (idx in tt_matrix_list){
+      if(countTimetableRange(tt_matrix_list[idx].matrix).am>=tt_matrix_count.am){
+        tt_matrix_count.am = countTimetableRange(tt_matrix_list[idx].matrix).am;
+        tt_matrix_am=tt_matrix_list[idx];
+      }
+      if(countTimetableRange(tt_matrix_list[idx].matrix).pm>=tt_matrix_count.pm){
+        tt_matrix_count.pm = countTimetableRange(tt_matrix_list[idx].matrix).pm;
+        tt_matrix_pm=tt_matrix_list[idx];
+      }
+    }
 
-  res.render('./recomm/first'); 
+    console.log(tt_matrix_median.matrix);
+    console.log(tt_matrix_am.matrix);
+    console.log(tt_matrix_pm.matrix);
+
+    models.student.findOne({
+      where: {id: id}
+    }).then(student=>{
+      res.render('./recomm/first',{
+        tt_matrix_list: tt_matrix_list,
+        tt_matrix_median: tt_matrix_median,
+        tt_matrix_am: tt_matrix_am,
+        tt_matrix_pm: tt_matrix_pm,
+        student: student
+      });
+    })
+
+
+
+  })
+  .catch(err=>{
+    console.log(err);
+  })
+
+  // getfilteredTimetableList(tt_matrix_list, 1);
+ 
 });
 
+var getMedian= function(tt_matrix_list){
+  var sorted=tt_matrix_list.sort(function(a, b){
+    if(a.score > b.score){
+      return 1;
+    }
+    if(a.score < b.score){
+      return -1;
+    }
+    return 0;
+  });
 
+  var half = Math.floor(sorted.length/2);
 
+  if(sorted.length % 2){
+    return sorted[half];
+  }
+  else return sorted[half-1];
+}
+
+var countTimetableRange= function(tt_matrix){
+  var tt_matrix = math.matrix(tt_matrix);
+  // 오전
+  var tt_list_am = tt_matrix.subset(math.index([0,1],[0,1,2,3,4]))._data;
+  var tt_list_am_count = 0;
+  
+  for(i in tt_list_am){
+    for (j in tt_list_am[i]){
+      if((tt_list_am[i][j])==1) tt_list_am_count+=1;
+    }
+  }
+
+  var tt_list_pm= tt_matrix.subset(math.index([4,5],[0,1,2,3,4]))._data;
+  var tt_list_pm_count = 0;
+  
+  for(i in tt_list_pm){
+    for (j in tt_list_pm[i]){
+      if((tt_list_pm[i][j])==1) tt_list_pm_count+=1;
+    }
+  }
+
+  var tt_matrix_count={am: tt_list_am_count, pm: tt_list_pm_count};
+
+  console.log(tt_matrix_count);
+  return tt_matrix_count;
+}
