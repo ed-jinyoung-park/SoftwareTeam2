@@ -7,3 +7,12 @@
   margin: 20px auto;
   display: block;
 }
+
+td {
+  color: white;
+  font-weight: bold;
+}
+
+th {
+  width: 176px;
+}
