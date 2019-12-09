@@ -13,13 +13,14 @@
 </ol>
 
   <% if(student){ %>
-    <div class = "edit">
-      <a href="/student/update/<%=student.id%>">개인정보 수정</a><br>
-      <a href="/student/<%=student.id%>/condition/update">조건 변경</a>
+    <div class = "edit1">
+      <a href="/student/update/<%=student.id%>"><p style="margin:0; font-weight:bold;">개인정보 수정</p></a>
+    </div>
+    <div class = "edit2">  
+      <a href="/student/<%=student.id%>/condition/update"><p style="margin:0; font-weight:bold;">시간표 기호 조건 변경</p></a>
     </div>
   <% } %>
 
-<!--
 
 <article>
   <% if(student){ %> 
@@ -50,4 +51,3 @@
   <% } %>
 </article>
 
--->

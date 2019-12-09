@@ -40,7 +40,9 @@
 
     if(selectedItems.indexOf(newSelected) === -1){
       $('#selected-subjects').append(thehtml);
+
       path=path+newSelected+',';
+
       $('a#subject-array').attr('href',path);
     }else{
       alert("Already selected!");
@@ -49,20 +51,26 @@
     $("#auto").val('');
   });
 
-   $('.selsub').on("click", function(){
+
+   $(document).on('click','.selsub', function() {
 
       var deleteItem = $(this).attr('id');
-      path = path - (deleteItem+',');
+
+      console.log(path);
       console.log(deleteItem);
+
+      var newpath = path.replace('' + deleteItem + ',','');
+      
+      console.log(newpath);
+
+      path = newpath;
+
 
       $('a#subject-array').attr('href',path);
 
-      if (path=='NaN') {
-        console.log('nan');
-        $('a#subject-array').remove(attr('href'));
-      }
 
       $(this).remove();
-   });
+
+  });
 
 </script>

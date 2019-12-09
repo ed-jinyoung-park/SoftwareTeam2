@@ -2,7 +2,7 @@
     <div class = "back">
            <button onclick="history.back()" class="backarrow";>
     </div>
- <p id="title">fuck</p>
+ <p id="title"></p>
  <div class = "push"></div>
 </header>
 
@@ -10,23 +10,24 @@
 
     $(document).ready(function(){
         var path= $(location).attr('pathname');
+
+
         if (path == "/index") {     
            $('.back').css("display","none");
            $('.push').css("display", "none");
            $("#title").text("2019학년도 2학기");
         }
-        if (path == "/student/show") {
+
+        if (path.match("/student/show/*.") || path == "/student/show" || path.match("/student/update/*.") || path.match("/student/[^\/]+/condition/update")) {
             $('.back').css("display","none");
             $('.push').css("display", "none");
             $("#title").text("계정정보 수정");
         }
-        if (path == "/student/show/\d") {
-            $('.back').css("display","none");
-            $('.push').css("display", "none");
-            $("#title").text("얍");
+
+        if (path.match("/student/create/*.") || path == "/student/create" || path.match("/student/[^\/]+/[^\/]+/create")) {
+            $("#title").text("시간표 추천 받기");
         }
+
     });
-
-
 
  </script>
