@@ -39,7 +39,45 @@ router.get('/data_insert', function(req,res){
         models.student.create({
           adm_year: '18',
           semester: '4',
-          major1: '컴퓨터공학'
+          major1: '컴퓨터공학',
+          major2: '없음',
+          major3: '없음'
+        })
+      }
+      for(var i=21; i<=40;i++){
+        models.student.create({
+          adm_year: '19',
+          semester: '2',
+          major1: '경영학',
+          major2: '없음',
+          major3: '없음'
+        })
+      }
+      for(var i=41; i<=60;i++){
+        models.student.create({
+          adm_year: '17',
+          semester: '4',
+          major1: '경제학',
+          major2: '융합소프트웨어',
+          major3: '없음'
+        })
+      }
+      for(var i=61; i<=80;i++){
+        models.student.create({
+          adm_year: '19',
+          semester: '4',
+          major1: '사회학',
+          major2: '경영학',
+          major3: '없음'
+        })
+      }
+      for(var i=81; i<=100;i++){
+        models.student.create({
+          adm_year: '18',
+          semester: '3',
+          major1: '신문방송학',
+          major2: '없음',
+          major3: '없음'
         })
       } 
     }

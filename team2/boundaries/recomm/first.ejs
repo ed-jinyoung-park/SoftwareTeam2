@@ -5,7 +5,7 @@
   
   <!-- <h2><%=student.major1%> 전공을 가진 <%=student.semester%>학기 학생의 추천 시간표입니다.</h2> -->
   <div class="text-center">
-    <%if(student.major2){%>
+    <%if(student.major2 != '없음' ){%>
       <p><%=student.major1%>과 <%=student.major2%>을(를) 전공하는</p>
     <% } else { %>
       <p><%=student.major1%>을(를) 전공하는</p>

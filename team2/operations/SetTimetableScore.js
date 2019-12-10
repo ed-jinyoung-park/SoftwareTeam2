@@ -14,11 +14,13 @@ module.exports = async function(studentId){
   console.log(student);
 
   var sameStudentList = await models.student.findAll({
-    where: {semester: student.semester, major1: student.major1, major2: student.major2, major3: student.major3}
+    where: {semester: student.semester, major1: student.major1}
   });
+
   sameStudentList = sameStudentList.map(student => student.id);
   sameStudentList.splice(studentId-1,1);
-
+  console.log(sameStudentList);
+  
   var tt_list_all = await models.Timetable.findAll({
     where: {studentId: sameStudentList},
     attributes: ['id','studentId','title','day','start_time','end_time'],
