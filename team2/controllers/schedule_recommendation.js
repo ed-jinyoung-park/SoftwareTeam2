@@ -110,6 +110,7 @@ router.post('/create',function(req,res){
     major2: user.major2,
     major3: user.major3
    }).then((result)=>{
+     console.log(result);
      var id = result.dataValues.id;
      res.redirect('/student/'+id+'/subject/create');
    });
@@ -124,6 +125,7 @@ router.get('/:id/subject/create',function(req,res){
     raw: true
   }).then(function(subjects){
     var subjects = subjects.map(subject => subject.title);
+    console.log(subjects);
     res.render('./subject/create',{subjects: subjects, id: id});
   });
 });
@@ -134,6 +136,7 @@ router.get('/:id/subject/create/:array', function(req,res){
   var subject_array=req.params.array;
   subject_array = subject_array.split(',');
   subject_array.pop();
+  console.log(subject_array);
   
   models.subject.findAll({
     where: {title: subject_array},
@@ -172,7 +175,6 @@ router.get('/:id/condition/create', function(req,res){
 //입력 3단계 - condition save
 router.post('/:id/condition/create', function(req,res){
   user_condition = req.body;
-  console.log(user_condition);
   var id = req.params.id;
   var vacant_day = user_condition.vacant_day;
   if(typeof vacant_day == 'object'){
@@ -188,9 +190,11 @@ router.post('/:id/condition/create', function(req,res){
     sub_fix_2:user_condition.sub_fix_2,
     sub_fix_3:user_condition.sub_fix_3,
     su_sub:user_condition.su
+  }).then(result=>{
+    console.log(result);
+    res.redirect('/student/'+id+'/recomm/first');
   })
   
-  res.redirect('/student/'+id+'/recomm/first');
 });
 
 //추천 1단계
@@ -205,6 +209,7 @@ router.get('/:id/recomm/first', function(req, res){
   setTimetableScore(id).then(result=>{
     
     tt_matrix_list=result;
+
 
     var tt_matrix_am;
     var tt_matrix_pm;
@@ -228,7 +233,6 @@ router.get('/:id/recomm/first', function(req, res){
     console.log(tt_matrix_median);
     console.log(tt_matrix_am);
     console.log(tt_matrix_pm);
-    console.log(tt_matrix_median.timetable[0]);
     models.student.findOne({
       where: {id: id}
     }).then(student=>{
@@ -430,7 +434,7 @@ var getMedian= function(tt_matrix_list){
   else return sorted[half-1];
 }
 
-// 시간표 오전대, 오후대 시간 설정
+// 시간표 오전대, 오후대 count
 var countTimetableRange= function(tt_matrix){
   var tt_matrix = math.matrix(tt_matrix);
   // 오전
@@ -454,6 +458,5 @@ var countTimetableRange= function(tt_matrix){
 
   var tt_matrix_count={am: tt_list_am_count, pm: tt_list_pm_count};
 
-  console.log(tt_matrix_count);
   return tt_matrix_count;
 }
