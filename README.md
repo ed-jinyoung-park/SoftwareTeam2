@@ -14,7 +14,7 @@
 
 ### 주요 구현 사항
 
-- sequelize를 활용한 ORM 적용
+- ``sequelize``를 활용한 ORM 적용
 - MVC 패턴 적용
 - `ejs template engine`을 활용한 서버사이드 렌더링
 - **SVD(Singular Value Decomposition) 개념을 활용한 시간표 패턴 분석 및 후보 시간표 제시**
