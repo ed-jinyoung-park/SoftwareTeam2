@@ -18,7 +18,7 @@
     "jaccard-array": "^1.0.1",
     "jaccard-index": "^0.2.0",
     "js-recommender": "^1.0.5",
-    "mathjs": "^6.2.5",
+    "mathjs": "^7.5.1",
     "mysql": "^2.17.1",
     "mysql2": "^2.0.0",
     "sanitize-html": "^1.20.1",
